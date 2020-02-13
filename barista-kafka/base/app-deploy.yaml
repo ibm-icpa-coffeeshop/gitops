@@ -30,21 +30,21 @@ spec:
     failureThreshold: 12
     httpGet:
       path: /health/live
-      port: 9080
+      port: 8090
     initialDelaySeconds: 10
     periodSeconds: 2
   readinessProbe:
     failureThreshold: 12
     httpGet:
       path: /health/ready
-      port: 9080
+      port: 8090
     initialDelaySeconds: 10
     periodSeconds: 2
     timeoutSeconds: 1
   service:
     annotations:
       prometheus.io/scrape: "true"
-    port: 9080
+    port: 8090
     type: NodePort
   stack: java-openliberty
   version: 1.0.0
