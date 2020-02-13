@@ -1,0 +1,51 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  annotations:
+    image.opencontainers.org/created: "2020-02-11T11:39:26Z"
+    stack.appsody.dev/authors: Mike Andrasak <andrasak@us.ibm.com>, Andy Mauer <ajmauer@us.ibm.com>,
+      Scott Kurz <skurz@us.ibm.com>, Adam Wisniewski <awisniew@us.ibm.com>
+    stack.appsody.dev/configured: docker.io/appsody/java-openliberty:0.1
+    stack.appsody.dev/created: "2020-02-07T16:20:59Z"
+    stack.appsody.dev/description: Open Liberty & OpenJ9 using Maven
+    stack.appsody.dev/licenses: Apache-2.0
+    stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.1.7
+    stack.appsody.dev/title: Open Liberty
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/part-of: coffeeshop
+    image.opencontainers.org/title: barista-kafka
+    stack.appsody.dev/id: java-openliberty
+    stack.appsody.dev/version: 0.1.7
+  name: barista-kafka
+  namespace: default
+spec:
+  applicationImage: matthewpwilson/coffeeshop-service-appsody:third
+  createKnativeService: false
+  env:
+  - name: MP_MESSAGING_CONNECTOR_LIBERTY_KAFKA_BOOTSTRAP_SERVERS
+    value: my-cluster-kafka-bootstrap.kafka.svc:9092
+  expose: true
+  livenessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /health/live
+      port: 9080
+    initialDelaySeconds: 10
+    periodSeconds: 2
+  readinessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /health/ready
+      port: 9080
+    initialDelaySeconds: 10
+    periodSeconds: 2
+    timeoutSeconds: 1
+  service:
+    annotations:
+      prometheus.io/scrape: "true"
+    port: 9080
+    type: NodePort
+  stack: java-openliberty
+  version: 1.0.0
+status: {}

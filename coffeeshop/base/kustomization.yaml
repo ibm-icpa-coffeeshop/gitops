@@ -1,0 +1,6 @@
+resources:
+- config
+
+bases:
+- ../../barista-kafka/base
+- ../../coffeeshop-service/base
