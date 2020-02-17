@@ -57,6 +57,7 @@ Once the UI is open, use the following steps to create a repository entry for th
 4. Provide a **Name** of `IBM GHE`
 5. Provide a **Repository URL** of `git@github.ibm.com:appsody-coffeeshop/gitops.git`
 6. Enter a SSH private key
+7. Tick "Skip server verification" then click "Connect"
 
 The following guide shows how to create a SSH key for you GitHub Account - note that you need to create a key with *no passphrase!*  
 [https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh](https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh)
