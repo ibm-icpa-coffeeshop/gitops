@@ -5,8 +5,16 @@
 This GitOps project assumes that the following already exists in your deployment cluster:
 
 1. The Appsody Operator
-2. The Strimzi Operator
-3. The `kafka` namespace
+
+`$ appsody operator install`.
+
+2. The `kafka` namespace
+
+`$ kubectl create ns kafka`.
+
+3. The Strimzi Operator
+
+`$ kubectl create ns strimzi && helm repo add strimzi https://strimzi.io/charts && helm install strimzi strimzi/strimzi-kafka-operator -n strimzi --set watchNamespaces={kafka} --wait --timeout 300s`
 
 
 ### GitOps with ArgoCD
