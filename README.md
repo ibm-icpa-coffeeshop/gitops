@@ -6,15 +6,17 @@ This GitOps project assumes that the following already exists in your deployment
 
 1. The Appsody Operator
 
-`$ appsody operator install`.
+* `appsody operator install`.
 
 2. The `kafka` namespace
 
-`$ kubectl create ns kafka`.
+* `kubectl create ns kafka`.
 
 3. The Strimzi Operator
 
-`$ kubectl create ns strimzi && helm repo add strimzi https://strimzi.io/charts && helm install strimzi strimzi/strimzi-kafka-operator -n strimzi --set watchNamespaces={kafka} --wait --timeout 300s`
+* `kubectl create ns strimzi`
+* `helm repo add strimzi https://strimzi.io/charts`
+* `helm install strimzi strimzi/strimzi-kafka-operator -n strimzi --set watchNamespaces={kafka} --wait --timeout 300s`
 
 
 ### GitOps with ArgoCD
@@ -24,7 +26,16 @@ This GitOps project assumes that the following already exists in your deployment
 This GitOps project has been tested using ArgoCD to deploy the project. The following steps show how to install ArgoCD using `helm` into your cluster.
 
 * `helm repo add argo https://argoproj.github.io/argo-helm`
+
+Helm 2:
 * `helm install argo/argo-cd -n argocd --namespace argocd`
+
+Helm 3:
+* `kubectl create ns argocd`
+* `helm install argocd argo/argo-cd --namespace argocd`
+
+Then to access the ArgoCD web frontend UI run:
+
 * `kubectl port-forward svc/argocd-server -n argocd 8081:443 `
 
 This will make the ArgoCD UI available at [http://localhost:8081](http://localhost:8081)
@@ -32,8 +43,9 @@ This will make the ArgoCD UI available at [http://localhost:8081](http://localho
 You can then login to ArgoCD using the following credentials:
 
 * Username:	`admin`
-* Password:  name of the server pod (eg. argocd-server-5f7ddc99f9-vlq7w)
+* Password:  name of the server pod (eg. `argocd-server-5f7ddc99f9-vlq7w`)
 
+You can get the server pod name from `kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`.
 
 **Creating a Repository entry for the GitOps project**
 
