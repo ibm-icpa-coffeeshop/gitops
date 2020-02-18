@@ -6,11 +6,11 @@ This GitOps project assumes that the following already exists in your deployment
 
 1. The Appsody Operator
 
-* `appsody operator install`.
+* `appsody operator install`
 
 2. The `kafka` namespace
 
-* `kubectl create ns kafka`.
+* `kubectl create ns kafka`
 
 3. The Strimzi Operator
 
@@ -45,7 +45,7 @@ You can then login to ArgoCD using the following credentials:
 * Username:	`admin`
 * Password:  name of the server pod (eg. `argocd-server-5f7ddc99f9-vlq7w`)
 
-You can get the server pod name from `kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`.
+You can get the server pod name from `kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`
 
 **Creating a Repository entry for the GitOps project**
 
