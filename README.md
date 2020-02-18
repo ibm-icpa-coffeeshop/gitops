@@ -18,6 +18,10 @@ This GitOps project assumes that the following already exists in your deployment
 * `helm repo add strimzi https://strimzi.io/charts`
 * `helm install strimzi strimzi/strimzi-kafka-operator -n strimzi --set watchNamespaces={kafka} --wait --timeout 300s`
 
+### GitOps with Kustomize
+
+* `cd coffeeshop/base`
+* `kubectl apply -k .`
 
 ### GitOps with ArgoCD
 
