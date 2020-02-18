@@ -1,7 +1,8 @@
 resources:
-- application.yaml
-- kafka.yaml
+#- application.yaml
+#- kafka.yaml
 
 bases:
 - ../../barista-kafka/base
 - ../../coffeeshop-service/base
+- ../../barista-http/base

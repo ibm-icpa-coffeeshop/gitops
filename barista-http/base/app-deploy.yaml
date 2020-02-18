@@ -2,7 +2,16 @@ apiVersion: appsody.dev/v1beta1
 kind: AppsodyApplication
 metadata:
   annotations:
-    image.opencontainers.org/created: "2020-02-11T11:39:26Z"
+    commit.image.appsody.dev/author: Matthew Wilson <matthew.wilson@uk.ibm.com>
+    commit.image.appsody.dev/committer: Matthew Wilson <matthew.wilson@uk.ibm.com>
+    commit.image.appsody.dev/contextDir: /barista-http
+    commit.image.appsody.dev/date: Mon Feb 17 15:02:54 2020 +0000
+    commit.image.appsody.dev/message: Update model to match kafka barista
+    image.opencontainers.org/created: "2020-02-18T13:08:13Z"
+    image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/barista-http
+    image.opencontainers.org/revision: 22a169c6e033e61aa414ee272c746c6def165d38
+    image.opencontainers.org/source: https://github.ibm.com/appsody-coffeeshop/barista-http/tree/master
+    image.opencontainers.org/url: https://github.ibm.com/appsody-coffeeshop/barista-http
     stack.appsody.dev/authors: Mike Andrasak <andrasak@us.ibm.com>, Andy Mauer <ajmauer@us.ibm.com>,
       Scott Kurz <skurz@us.ibm.com>, Adam Wisniewski <awisniew@us.ibm.com>
     stack.appsody.dev/configured: docker.io/appsody/java-openliberty:0.1
@@ -13,38 +22,37 @@ metadata:
     stack.appsody.dev/title: Open Liberty
   creationTimestamp: null
   labels:
-    app.kubernetes.io/part-of: coffeeshop
-    image.opencontainers.org/title: coffeeshop-service-appsody
+    image.opencontainers.org/title: appsody-http
     stack.appsody.dev/id: java-openliberty
     stack.appsody.dev/version: 0.1.7
-  name: coffeeshop-service-appsody
+  name: appsody-http
   namespace: default
 spec:
-  applicationImage: ianpartridge/coffeeshop-service-appsody:latest
+  applicationImage: ianpartridge/appsody-http:latest
   createKnativeService: false
-  env:
-  - name: MP_MESSAGING_CONNECTOR_LIBERTY_KAFKA_BOOTSTRAP_SERVERS
-    value: my-cluster-kafka-bootstrap.kafka.svc:9092
   expose: true
   livenessProbe:
     failureThreshold: 12
     httpGet:
       path: /health/live
       port: 9080
-    initialDelaySeconds: 10
+    initialDelaySeconds: 5
     periodSeconds: 2
   readinessProbe:
     failureThreshold: 12
     httpGet:
       path: /health/ready
       port: 9080
-    initialDelaySeconds: 10
+    initialDelaySeconds: 5
     periodSeconds: 2
     timeoutSeconds: 1
   service:
     annotations:
       prometheus.io/scrape: "true"
     port: 9080
+    provides:
+      category: openapi
+      context: /barista
     type: NodePort
   stack: java-openliberty
   version: 1.0.0
