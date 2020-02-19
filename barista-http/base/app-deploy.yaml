@@ -22,10 +22,10 @@ metadata:
     stack.appsody.dev/title: Open Liberty
   creationTimestamp: null
   labels:
-    image.opencontainers.org/title: appsody-http
+    image.opencontainers.org/title: barista-http
     stack.appsody.dev/id: java-openliberty
     stack.appsody.dev/version: 0.1.7
-  name: appsody-http
+  name: barista-http
   namespace: default
 spec:
   applicationImage: ianpartridge/appsody-http:latest
@@ -52,7 +52,7 @@ spec:
     port: 9080
     provides:
       category: openapi
-      context: /barista
+      context: /
     type: NodePort
   stack: java-openliberty
   version: 1.0.0
