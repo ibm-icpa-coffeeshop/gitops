@@ -26,9 +26,8 @@ metadata:
     stack.appsody.dev/id: java-openliberty
     stack.appsody.dev/version: 0.1.7
   name: barista-http
-  namespace: default
 spec:
-  applicationImage: ianpartridge/appsody-http:latest
+  applicationImage: fred
   createKnativeService: false
   expose: true
   livenessProbe:

@@ -1,0 +1,6 @@
+bases:
+- ../base
+patches:
+  - image-patch.yaml
+  - consume-patch.yaml
+  - env-patch.yaml

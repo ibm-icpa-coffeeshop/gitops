@@ -1,0 +1,11 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  name: coffeeshop-ui
+  namespace: default
+spec:
+  service:
+    consumes:
+      - category: openapi
+        name: barista-http
+        namespace: coffeeshop

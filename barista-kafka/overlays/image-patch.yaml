@@ -1,0 +1,7 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  name: barista-kafka
+  namespace: default
+spec:
+  applicationImage: ianpartridge/barista-kafka:latest

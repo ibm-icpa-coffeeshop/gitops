@@ -18,18 +18,9 @@ metadata:
     stack.appsody.dev/id: java-openliberty
     stack.appsody.dev/version: 0.1.7
   name: coffeeshop-ui
-  namespace: default
 spec:
-  applicationImage: ianpartridge/coffeeshop-service-appsody:latest
+  applicationImage: fred
   createKnativeService: false
-  env:
-  - name: MP_MESSAGING_CONNECTOR_LIBERTY_KAFKA_BOOTSTRAP_SERVERS
-    value: my-cluster-kafka-bootstrap.kafka.svc:9092
-  - name: COM_IBM_RUNTIMES_EVENTS_COFFEESHOP_HTTP_BARISTASERVICE_MP_REST_URL
-    valueFrom:
-      secretKeyRef:
-        key: url
-        name: default-barista-http
   expose: true
   livenessProbe:
     failureThreshold: 12

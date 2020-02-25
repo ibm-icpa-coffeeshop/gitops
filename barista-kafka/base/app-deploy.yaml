@@ -37,9 +37,8 @@ metadata:
     stack.appsody.dev/id: quarkus
     stack.appsody.dev/version: 0.2.3
   name: barista-kafka
-  namespace: default
 spec:
-  applicationImage: ianpartridge/barista-kafka:latest
+  applicationImage: fred
   createKnativeService: false
   env:
   - name: KAFKA_BOOTSTRAP_SERVERS
