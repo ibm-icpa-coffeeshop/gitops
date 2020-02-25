@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineRun
 metadata:
-  name: run-deploy-pipeline # TODO use generateName
+  generateName: run-deploy-pipeline-
 spec:
   serviceAccountName: pipeline-service-account
   pipelineRef:

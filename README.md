@@ -95,7 +95,7 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 **Update Secrets**
 
-In the `tekton/git-secrets.yaml` file, change the password to a personal access token that you created on GitHub.
+In the `tekton/git-secrets.yaml` file, change the password to a personal access token that you created on GitHub. The personal access token should specify the following scopes: `public_repo` , `read:repo_hook` and `write:repo_hook`.
 
 **Deploy using Tekton**
 
@@ -105,4 +105,4 @@ In the `tekton/git-secrets.yaml` file, change the password to a personal access 
 * `kubectl apply -f task-deploy.yaml`
 * `kubectl apply -f pipeline-resources.yaml`
 * `kubectl apply -f pipeline-deploy.yaml`
-* `kubectl apply -f run-pipeline.yaml` 
+* `kubectl create -f run-pipeline.yaml` 
