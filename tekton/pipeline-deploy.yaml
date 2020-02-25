@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: pipeline-deploy
+spec:
+  resources:
+    - name: git-source
+      type: git
+  params:
+    - name: pathToYaml
+      description: Path to the kustomize yaml file within the git source
+  tasks:
+    - name: deploy-coffeeshop-demo
+      taskRef:
+        name: deploy-using-kustomize
+      resources:
+        inputs:
+          - name: git-source
+            resource: git-source
+      params:
+        - name: pathToYaml
+          value: "$(params.pathToYaml)"
