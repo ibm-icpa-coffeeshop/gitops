@@ -21,6 +21,12 @@ metadata:
 spec:
   applicationImage: fred
   createKnativeService: false
+  env:
+  - name: COM_IBM_RUNTIMES_EVENTS_COFFEESHOP_HTTP_BARISTASERVICE_MP_REST_URL
+    valueFrom:
+      secretKeyRef:
+        key: url
+        name: default-barista-http
   expose: true
   livenessProbe:
     failureThreshold: 12

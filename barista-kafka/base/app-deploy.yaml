@@ -40,9 +40,6 @@ metadata:
 spec:
   applicationImage: fred
   createKnativeService: false
-  env:
-  - name: KAFKA_BOOTSTRAP_SERVERS
-    value: my-cluster-kafka-bootstrap.kafka.svc:9092
   expose: true
   service:
     port: 8080

@@ -4,3 +4,7 @@ metadata:
   name: barista-kafka
 spec:
   applicationImage: ianpartridge/barista-kafka:latest
+env:
+  - name: KAFKA_BOOTSTRAP_SERVERS
+    value: my-cluster-kafka-bootstrap.kafka.svc:9092
+
