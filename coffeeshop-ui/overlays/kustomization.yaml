@@ -3,4 +3,16 @@ bases:
 patches:
   - image-patch.yaml
   - consume-patch.yaml
-  - env-patch.yaml
+patchesJson6902:
+  - target:
+      group: appsody.dev
+      version: v1beta1
+      kind: AppsodyApplication
+      name: coffeeshop-ui
+    path: kafka-patch.yaml
+  - target:
+      group: appsody.dev
+      version: v1beta1
+      kind: AppsodyApplication
+      name: coffeeshop-ui
+    path: barista-http-patch.yaml

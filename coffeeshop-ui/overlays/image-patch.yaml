@@ -4,4 +4,4 @@ metadata:
   name: coffeeshop-ui
   namespace: default
 spec:
-  applicationImage: ianpartridge/coffeeshop-service:latest
+  applicationImage: ianpartridge/coffeeshop-ui:latest
