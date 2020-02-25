@@ -25,7 +25,7 @@ This GitOps project assumes that the following already exists in your deployment
 
 ### GitOps with Kustomize
 
-* `cd coffeeshop/base`
+* `cd overlays`
 * `kubectl apply -k .`
 
 ### GitOps with ArgoCD
