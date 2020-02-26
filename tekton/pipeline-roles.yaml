@@ -27,4 +27,4 @@ rules:
   subjects:
   - kind: ServiceAccount
     name: pipeline-service-account
-    namespace: default
+    namespace: coffeeshop-pipelines

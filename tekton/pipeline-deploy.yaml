@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1alpha1
 kind: Pipeline
 metadata:
   name: pipeline-deploy
+  namespace: coffeeshop-pipelines
 spec:
   resources:
     - name: git-source
