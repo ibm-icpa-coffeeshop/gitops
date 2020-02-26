@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: deploy-using-kustomize
+  namespace: coffeeshop-pipelines
+spec:
+  inputs:
+    resources:
+      - name: git-source
+        type: git
+    params:
+      - name: pathToYaml
+        description: Path to the kustomize yaml file within the git source
+  steps:
+    - name: run-kubectl-apply-k
+      image: bitnami/kubectl
+      command: ["kubectl"]
+      args:
+        - "apply"
+        - "-k"
+        - "/workspace/git-source/$(inputs.params.pathToYaml)"

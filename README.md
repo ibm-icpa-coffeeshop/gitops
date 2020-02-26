@@ -88,4 +88,24 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 1. Click on the **SYNC** button on the **coffeeshop-dev** application tile.
 
+### GitOps with Tekton
 
+**Installing Tekton**
+
+* `kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.10.1/release.yaml`
+
+**Update Secrets**
+
+In the `tekton/git-secrets.yaml` file, change the password to a personal access token that you created on GitHub. The personal access token should specify the following scopes: `public_repo` , `read:repo_hook` and `write:repo_hook`.
+
+**Deploy using Tekton**
+
+* `cd tekton`
+* `kubectl create ns coffeeshop-pipelines`
+* `kubectl apply -f git-secrets.yaml`
+* `kubectl apply -f serviceaccount.yaml`
+* `kubectl apply -f pipeline-roles.yaml`
+* `kubectl apply -f task-deploy.yaml`
+* `kubectl apply -f pipeline-resources.yaml`
+* `kubectl apply -f pipeline-deploy.yaml`
+* `kubectl create -f run-pipeline.yaml` 

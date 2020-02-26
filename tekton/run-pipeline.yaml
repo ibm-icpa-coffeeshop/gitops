@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  generateName: run-deploy-pipeline-
+  namespace: coffeeshop-pipelines
+spec:
+  serviceAccountName: pipeline-service-account
+  pipelineRef:
+    name: pipeline-deploy
+  resources:
+    - name: git-source
+      resourceRef:
+        name: gitops-git
+  params:
+    - name: pathToYaml
+      value: "overlays"
