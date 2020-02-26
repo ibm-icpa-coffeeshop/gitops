@@ -1,0 +1,9 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  name: barista-kafka
+spec:
+  env:
+    - name: KAFKA_BOOTSTRAP_SERVERS
+      value: my-cluster-kafka-bootstrap.kafka.svc:9092
+

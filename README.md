@@ -6,11 +6,12 @@ This GitOps project assumes that the following already exists in your deployment
 
 1. The Appsody Operator
 
-* `appsody operator install`
+* `appsody operator install --watch-all`
 
-2. The `kafka` namespace
+2. The `kafka` and `coffeeshop` namespaces
 
 * `kubectl create ns kafka`
+* `kubectl create ns coffeeshop`
 
 3. The Strimzi Operator
 
@@ -25,7 +26,7 @@ This GitOps project assumes that the following already exists in your deployment
 
 ### GitOps with Kustomize
 
-* `cd coffeeshop/base`
+* `cd overlays`
 * `kubectl apply -k .`
 
 ### GitOps with ArgoCD
