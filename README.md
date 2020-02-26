@@ -101,6 +101,7 @@ In the `tekton/git-secrets.yaml` file, change the password to a personal access 
 **Deploy using Tekton**
 
 * `cd tekton`
+* `kubectl create ns coffeeshop-pipelines`
 * `kubectl apply -f git-secrets.yaml`
 * `kubectl apply -f serviceaccount.yaml`
 * `kubectl apply -f pipeline-roles.yaml`
