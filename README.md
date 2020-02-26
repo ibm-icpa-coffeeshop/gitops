@@ -8,21 +8,26 @@ This GitOps project assumes that the following already exists in your deployment
 
 * `appsody operator install --watch-all`
 
-2. The `kafka` and `coffeeshop` namespaces
+2. The `coffeeshop` namespaces
 
-* `kubectl create ns kafka`
 * `kubectl create ns coffeeshop`
 
 3. The Strimzi Operator
 
 * `kubectl create ns strimzi`
 * `helm repo add strimzi https://strimzi.io/charts`
-* `helm install strimzi strimzi/strimzi-kafka-operator -n strimzi --set watchNamespaces={kafka} --wait --timeout 300s`
+* `helm install strimzi strimzi/strimzi-kafka-operator -n strimzi --set watchNamespaces={coffeeshop} --wait --timeout 300s`
 
 4. The Kafka Cluster
 
 * `cd coffeeshop/base`
 * `kubectl apply -f kafka.yaml`
+
+5. The Service Binding Operator
+
+    _Note: The Service Binding Operator is only available on Operator Hub in OpenShift._
+
+* Navigate to the `Operators` -> `OperatorHub` in the OpenShift console. Select `Developer Tools` category and then select the `Service Binding Operator`. Finally, install an `alpha` version of the operator.
 
 ### GitOps with Kustomize
 

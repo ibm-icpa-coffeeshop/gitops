@@ -1,5 +1,8 @@
-- op: add
-  path: "/spec/env/0"
-  value:
-    name: MP_MESSAGING_CONNECTOR_LIBERTY_KAFKA_BOOTSTRAP_SERVERS
-    value: my-cluster-kafka-bootstrap.kafka.svc:9092
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  name: coffeeshop-ui
+spec:
+  envFrom: 
+    - secretRef:
+        name: coffeeshop-ui
