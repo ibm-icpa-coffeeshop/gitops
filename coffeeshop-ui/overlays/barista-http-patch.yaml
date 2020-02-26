@@ -1,0 +1,8 @@
+- op: add
+  path: "/spec/env/-"
+  value:
+    name: COM_IBM_RUNTIMES_EVENTS_COFFEESHOP_HTTP_BARISTASERVICE_MP_REST_URL
+    valueFrom:
+      secretKeyRef:
+        key: url
+        name: coffeeshop-barista-http

@@ -1,0 +1,7 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  name: coffeeshop-ui
+  namespace: default
+spec:
+  applicationImage: ianpartridge/coffeeshop-ui:latest
