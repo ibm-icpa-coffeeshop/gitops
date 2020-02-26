@@ -67,6 +67,9 @@ metadata:
 spec:
   applicationImage: dev.local/coffeeshop-ui
   createKnativeService: false
+  env:
+  - name: FOO
+    value: BAR
   expose: true
   livenessProbe:
     failureThreshold: 12
