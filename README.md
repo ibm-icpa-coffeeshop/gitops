@@ -26,6 +26,22 @@ This GitOps project assumes that the following already exists in your deployment
 5. The Service Binding Operator
 
     _Note: The Service Binding Operator is only available on Operator Hub in OpenShift._
+* Add a custom `OperatorSource`:
+
+    ```console
+    cat <<EOS |kubectl apply -f -
+    ---
+    apiVersion: operators.coreos.com/v1
+    kind: OperatorSource
+    metadata:
+    name: redhat-developer-operators
+    namespace: openshift-marketplace
+    spec:
+    type: appregistry
+    endpoint: https://quay.io/cnr
+    registryNamespace: redhat-developer
+    EOS
+    ```
 
 * Navigate to the `Operators` -> `OperatorHub` in the OpenShift console. Select `Developer Tools` category and then select the `Service Binding Operator`. Finally, install an `alpha` version of the operator.
 
