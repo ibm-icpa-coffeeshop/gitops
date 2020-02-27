@@ -43,7 +43,7 @@ This GitOps project assumes that the following already exists in your deployment
     EOS
     ```
 
-* Navigate to the `Operators` -> `OperatorHub` in the OpenShift console. Select `Developer Tools` category and then select the `Service Binding Operator`. Finally, install an `alpha` version of the operator.
+* Navigate to the `Operators` -> `OperatorHub` in the OpenShift console. Select `Developer Tools` category and then select the `Service Binding Operator`. Select `All namespaces on the cluster ` or `A specific namespace on the cluster` -> `coffeeshop` project. Finally select `Subscribe` to start the installation. The operator is ready in a few minutes once its status changes to `InstallSucceeded`.
 
 ### GitOps with Kustomize
 
