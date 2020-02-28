@@ -113,6 +113,8 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 **Setup GitHub webhook and deploy triggers**
 
+* `helm install my-nginx stable/nginx-ingress`
+* `kubectl apply -f tekton/webhook/ingress.yaml`
 * Create webhook on GitHub (WIP)
 * `kubectl apply -f tekton/webhook/eventlistener.yaml`
 * `kubectl apply -f tekton/webhook/triggertemplate.yaml`
