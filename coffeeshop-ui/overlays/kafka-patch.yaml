@@ -5,4 +5,4 @@ metadata:
 spec:
   envFrom: 
     - secretRef:
-        name: coffeeshop-ui
+        name: coffeeshop-ui-kafka
