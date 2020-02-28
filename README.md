@@ -2,7 +2,7 @@
 
 ### Pre-requisites
 
-This GitOps project assumes that the following already exists in your deployment cluster:
+This GitOps project assumes that the following already exists in your deployment **OpenShift** cluster:
 
 1. The Appsody Operator
 
@@ -14,9 +14,15 @@ This GitOps project assumes that the following already exists in your deployment
 
 3. The Strimzi Operator
 
-* `kubectl create ns strimzi`
-* `helm repo add strimzi https://strimzi.io/charts`
-* `helm install strimzi strimzi/strimzi-kafka-operator -n strimzi --set watchNamespaces={coffeeshop} --wait --timeout 300s`
+* Navigate in the web console to the **Operators** → **OperatorHub** page.
+* Type **Strimzi** into the **Filter by keyword** box.
+* Select the Operator and click **Install**.
+* On the **Create Operator Subscription** page:
+    * Select **All namespaces on the cluster (default)**. This installs the operator in the default `openshift-operators` namespace to watch and be made available to all namespaces in the cluster.
+    * Select **Automatic** or **Manual** approval strategy. If you choose Automatic, Operator Lifecycle Manager (OLM) automatically upgrades the operator as a new version is available.
+* Click **Subscribe**.
+* Select **Operators** → **Installed Operators** to verify that the Strimzi ClusterServiceVersion (CSV) eventually shows up and its Status changes to **InstallSucceeded** in the `openshift-operators` namespace.
+
 
 4. The Kafka Cluster
 
@@ -25,8 +31,7 @@ This GitOps project assumes that the following already exists in your deployment
 
 5. The Service Binding Operator
 
-    _Note: The Service Binding Operator is only available on Operator Hub in OpenShift._
-* Add a custom `OperatorSource`:
+* Add a custom **OperatorSource**:
 
     ```console
     cat <<EOS |kubectl apply -f -
@@ -42,8 +47,10 @@ This GitOps project assumes that the following already exists in your deployment
     registryNamespace: redhat-developer
     EOS
     ```
+    This step is needed as the operator is not officially released to the OperatorHub yet.
 
-* Navigate to the `Operators` -> `OperatorHub` in the OpenShift console. Select `Developer Tools` category and then select the `Service Binding Operator`. Select `All namespaces on the cluster ` or `A specific namespace on the cluster` -> `coffeeshop` project. Finally select `Subscribe` to start the installation. The operator is ready in a few minutes once its status changes to `InstallSucceeded`.
+* Follow the same instructions for installing the Strimzi Operator described above except the following:
+    * Type **Service Binding Operator** into the Filter by keyword box.
 
 ### GitOps with Kustomize
 
