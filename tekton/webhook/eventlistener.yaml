@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: event-listener
+  namespace: coffeeshop-pipelines
+spec:
+  serviceAccountName: pipeline-service-account
+  triggers:
+    - name: pipeline-trigger
+      interceptors:
+        - github:
+            secretRef:
+              secretName: git-auth
+              secretKey: webhooksecret
+              namespace: coffeeshop-pipelines
+            eventTypes:
+              - push
+      bindings:
+        - name: pipeline-binding
+        - name: prod-env
+      template:
+        name: pipeline-template

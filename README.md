@@ -100,9 +100,12 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 **Setup Authentication for the pipeline**
 
-* In the `tekton/git-secrets.yaml` file, change the password to a personal access token that you created on GitHub. The personal access token should specify the following scopes: `public_repo` , `read:repo_hook` and `write:repo_hook`.
+* In the `tekton/git-secrets.yaml` file, update the following fields:
+  * `password` to a personal access token that you created on GitHub. The personal access token should specify the following scopes: `public_repo` , `read:repo_hook` and `write:repo_hook`.
+  * `webhooksecret` with a randomly generated password.
 * `kubectl apply -f tekton/authentication/git-secrets.yaml`
 * `kubectl apply -f tekton/authentication/serviceaccount.yaml`
+* `kubectl apply -f tekton/authentication/pipeline-clusterroles.yaml`
 * `kubectl apply -f tekton/authentication/pipeline-roles.yaml`
 
 **Deploy the pipeline components**
@@ -113,9 +116,9 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 **Setup GitHub webhook and deploy triggers**
 
-* `helm install my-nginx stable/nginx-ingress`
+* `helm install my-nginx stable/nginx-ingress -n coffeeshop-pipelines`
 * `kubectl apply -f tekton/webhook/ingress.yaml`
-* Create webhook on GitHub (WIP)
+* Create webhook on GitHub, specifying the `Payload URL` to `http://<HOST>:80` where host is the same as from the ingress file above and `Secret` to the `webhooksecret` from the secret file.
 * `kubectl apply -f tekton/webhook/eventlistener.yaml`
 * `kubectl apply -f tekton/webhook/triggertemplate.yaml`
 * `kubectl apply -f tekton/webhook/triggerbindings.yaml`
