@@ -19,6 +19,7 @@ rules:
   - ""
   resources:
     - configmaps
+    - secrets
   verbs: 
     - get
     - list
@@ -29,7 +30,6 @@ rules:
   resources: 
   - pipelineruns
   - pipelineresources
-  - taskruns
   verbs: 
   - create
 ---
