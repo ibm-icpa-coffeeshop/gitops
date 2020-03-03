@@ -4,6 +4,9 @@ metadata:
   name: pipeline-template
   namespace: coffeeshop-pipelines
 spec:
+  params:
+  - name: message
+    default: "Default message"
   resourcetemplates:
   - apiVersion: tekton.dev/v1alpha1
     kind: PipelineRun
@@ -21,4 +24,6 @@ spec:
       params:
       - name: pathToYaml
         value: "overlays"
+      - name: message
+        value: $(params.message)
   

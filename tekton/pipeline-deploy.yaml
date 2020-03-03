@@ -10,6 +10,8 @@ spec:
   params:
     - name: pathToYaml
       description: Path to the kustomize yaml file within the git source
+    - name: message
+      default: "Default message"
   tasks:
     - name: deploy-coffeeshop-demo
       taskRef:
@@ -21,3 +23,5 @@ spec:
       params:
         - name: pathToYaml
           value: "$(params.pathToYaml)"
+        - name: message
+          value: $(params.message)

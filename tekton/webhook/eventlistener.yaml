@@ -17,6 +17,5 @@ spec:
               - push
       bindings:
         - name: pipeline-binding
-        - name: prod-env
       template:
         name: pipeline-template
