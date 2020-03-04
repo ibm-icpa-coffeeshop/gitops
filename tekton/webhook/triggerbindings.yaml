@@ -1,9 +1,23 @@
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
-  name: pipeline-binding
+  name: generic-branch-binding
   namespace: coffeeshop-pipelines
 spec:
   params:
   - name: message
-    value: "Binding success"
+    value: "Binding to test branch successful"
+  - name: pipeline-name-suffix
+    value: test
+---
+apiVersion: tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: master-branch-binding
+  namespace: coffeeshop-pipelines
+spec:
+  params:
+  - name: message
+    value: "Binding to master branch successful"
+  - name: pipeline-name-suffix
+    value: master

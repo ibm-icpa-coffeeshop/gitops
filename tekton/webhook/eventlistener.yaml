@@ -9,9 +9,9 @@ spec:
     - name: tektontrigger-branch-trigger
       interceptors:
         - cel:
-            filter: "header.match('X-GitHub-Event','push') && body.ref == 'refs/heads/add-tekton-trigger'"
+            filter: "header.match('X-GitHub-Event','push') && body.ref != 'refs/heads/master'"
       bindings:
-        - name: pipeline-binding
+        - name: generic-branch-binding
       template:
         name: pipeline-template
     - name: master-trigger
@@ -19,6 +19,6 @@ spec:
         - cel:
             filter: "header.match('X-GitHub-Event','push') && body.ref == 'refs/heads/master'"
       bindings:
-        - name: pipeline-binding
+        - name: master-branch-binding
       template:
         name: pipeline-template

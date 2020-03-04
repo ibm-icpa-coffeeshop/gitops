@@ -7,11 +7,13 @@ spec:
   params:
   - name: message
     default: "Default message"
+  - name: pipeline-name-suffix
+    description: The suffix to use for the pipeline name
   resourcetemplates:
   - apiVersion: tekton.dev/v1alpha1
     kind: PipelineRun
     metadata:
-      generateName: run-deploy-pipeline-
+      generateName: run-deploy-pipeline-$(params.pipeline-name-suffix)-
       namespace: coffeeshop-pipelines
     spec:
       serviceAccountName: pipeline-service-account
@@ -23,7 +25,6 @@ spec:
           name: gitops-git
       params:
       - name: pathToYaml
-        value: "overlays"
+        value: overlays
       - name: message
         value: $(params.message)
-  
