@@ -6,9 +6,9 @@ metadata:
 spec:
   params:
   - name: message
-    value: "Binding to test branch successful"
+    value: "Binding to $(body.ref) branch successful"
   - name: pipeline-name-suffix
-    value: test
+    value: generic
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding
@@ -18,6 +18,6 @@ metadata:
 spec:
   params:
   - name: message
-    value: "Binding to master branch successful"
+    value: "Binding to $(body.ref) branch successful"
   - name: pipeline-name-suffix
     value: master
