@@ -12,6 +12,7 @@ spec:
             filter: "header.match('X-GitHub-Event','push') && body.ref != 'refs/heads/master'"
       bindings:
         - name: generic-branch-binding
+        - name: git-binding
       template:
         name: pipeline-template
     - name: master-trigger
@@ -20,5 +21,6 @@ spec:
             filter: "header.match('X-GitHub-Event','push') && body.ref == 'refs/heads/master'"
       bindings:
         - name: master-branch-binding
+        - name: git-binding
       template:
         name: pipeline-template
