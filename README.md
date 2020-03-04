@@ -88,15 +88,15 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 1. Click on the **SYNC** button on the **coffeeshop-dev** application tile.
 
-### GitOps with Tekton
+### GitOps with Tekton on Openshift
 
 **Create a namespace to place all of your pipeline components in**
+
 * `kubectl create ns coffeeshop-pipelines`
 
-**Installing Tekton Pipeline and Tekton Triggers**
+**Installing Openshift pipelines**
 
-* `kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.10.1/release.yaml`
-* `kubectl apply --filename https://storage.googleapis.com/tekton-releases/triggers/previous/v0.3.0/release.yaml`
+* Install the OpenShift Pipelines Operator from OperatorHub
 
 **Setup Authentication for the pipeline**
 
@@ -116,12 +116,12 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 **Setup GitHub webhook and deploy triggers**
 
-* `helm install my-nginx stable/nginx-ingress -n coffeeshop-pipelines`
-* `kubectl apply -f tekton/webhook/ingress.yaml`
 * Create webhook on GitHub, specifying the `Payload URL` to `http://<HOST>:80` where host is the same as from the ingress file above and `Secret` to the `webhooksecret` from the secret file.
 * `kubectl apply -f tekton/webhook/eventlistener.yaml`
 * `kubectl apply -f tekton/webhook/triggertemplate.yaml`
 * `kubectl apply -f tekton/webhook/triggerbindings.yaml`
+* In the `ingress.yaml` file, substitute `INGRESS_ROUTER_HOSTNAME` with the actual ingress hostname. This can be found in the environment variables for the ingress pod under `ROUTER_CANONICAL_HOSTNAME` in the `openshift-ingress` project. 
+* `kubectl apply -f tekton/webhook/ingress.yaml`
 
 **Manually run the pipeline which will deploy your resources**
 

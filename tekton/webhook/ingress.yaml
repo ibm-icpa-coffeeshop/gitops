@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: eventlistener.apps.rapiers.os.fyre.ibm.com 
+  - host: eventlistener.<INGRESS_ROUTER_HOSTNAME> 
     http:
       paths:
       - path: /

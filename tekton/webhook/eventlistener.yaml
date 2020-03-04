@@ -6,15 +6,18 @@ metadata:
 spec:
   serviceAccountName: pipeline-service-account
   triggers:
-    - name: pipeline-trigger
+    - name: tektontrigger-branch-trigger
       interceptors:
-        - github:
-            secretRef:
-              secretName: git-auth
-              secretKey: webhooksecret
-              namespace: coffeeshop-pipelines
-            eventTypes:
-              - push
+        - cel:
+            filter: "header.match('X-GitHub-Event','push') && body.ref == 'refs/heads/add-tekton-trigger'"
+      bindings:
+        - name: pipeline-binding
+      template:
+        name: pipeline-template
+    - name: master-trigger
+      interceptors:
+        - cel:
+            filter: "header.match('X-GitHub-Event','push') && body.ref == 'refs/heads/master'"
       bindings:
         - name: pipeline-binding
       template:
