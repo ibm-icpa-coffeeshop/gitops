@@ -8,10 +8,10 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: eventlistener.<INGRESS_ROUTER_HOSTNAME> 
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: el-event-listener
-          servicePort: 8080
+    - host: eventlistener.<INGRESS_ROUTER_HOSTNAME> 
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: el-event-listener
+              servicePort: 8080

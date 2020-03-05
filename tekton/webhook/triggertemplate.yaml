@@ -5,33 +5,33 @@ metadata:
   namespace: coffeeshop-pipelines
 spec:
   params:
-  - name: message
-    default: "Default message"
-  - name: pipeline-name-suffix
-    description: The suffix to use for the pipeline name
-  - name: gitrevision
-  - name: giturl
+    - name: message
+      default: "Default message"
+    - name: pipeline-name-suffix
+      description: The suffix to use for the pipeline name
+    - name: gitrevision
+    - name: giturl
   resourcetemplates:
-  - apiVersion: tekton.dev/v1alpha1
-    kind: PipelineRun
-    metadata:
-      generateName: run-deploy-pipeline-$(params.pipeline-name-suffix)-
-      namespace: coffeeshop-pipelines
-    spec:
-      serviceAccountName: pipeline-service-account
-      pipelineRef:
-        name: pipeline-deploy
-      resources:
-      - name: git-source
-        resourceSpec:
-          type: git
-          params:
-          - name: revision
-            value: $(params.gitrevision)
-          - name: url
-            value: $(params.giturl)
-      params:
-      - name: pathToYaml
-        value: overlays
-      - name: message
-        value: $(params.message)
+    - apiVersion: tekton.dev/v1alpha1
+      kind: PipelineRun
+      metadata:
+        generateName: run-deploy-pipeline-$(params.pipeline-name-suffix)-
+        namespace: coffeeshop-pipelines
+      spec:
+        serviceAccountName: pipeline-service-account
+        pipelineRef:
+          name: pipeline-deploy
+        resources:
+          - name: git-source
+            resourceSpec:
+              type: git
+              params:
+              - name: revision
+                value: $(params.gitrevision)
+              - name: url
+                value: $(params.giturl)
+        params:
+          - name: pathToYaml
+            value: overlays
+          - name: message
+            value: $(params.message)

@@ -5,10 +5,10 @@ metadata:
   namespace: coffeeshop-pipelines
 spec:
   params:
-  - name: message
-    value: "Binding to $(body.ref) branch successful"
-  - name: pipeline-name-suffix
-    value: generic
+    - name: message
+      value: "Binding to $(body.ref) branch successful"
+    - name: pipeline-name-suffix
+      value: generic
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding
@@ -17,10 +17,10 @@ metadata:
   namespace: coffeeshop-pipelines
 spec:
   params:
-  - name: message
-    value: "Binding to $(body.ref) branch successful"
-  - name: pipeline-name-suffix
-    value: master
+    - name: message
+      value: "Binding to $(body.ref) branch successful"
+    - name: pipeline-name-suffix
+      value: master
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding

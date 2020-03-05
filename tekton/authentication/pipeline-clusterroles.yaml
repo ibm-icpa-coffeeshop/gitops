@@ -16,19 +16,11 @@ rules:
       - patch
       - delete
   - apiGroups:
-      - appsody.dev
       - apps.openshift.io
     resources:
-      - appsodyapplications
       - servicebindingrequests
     verbs: 
       - get
-      - list
-      - watch
-      - create
-      - update
-      - patch
-      - delete
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -39,6 +31,6 @@ roleRef:
   kind: ClusterRole
   name: pipeline-clusterrole
 subjects:
-- kind: ServiceAccount
-  name: pipeline-service-account
-  namespace: coffeeshop-pipelines
+  - kind: ServiceAccount
+    name: pipeline-service-account
+    namespace: coffeeshop-pipelines
