@@ -11,7 +11,7 @@ spec:
     - name: pathToYaml
       description: Path to the kustomize yaml file within the git source
     - name: message
-      default: "Default message"
+      default: Local deployment pipeline has started
   tasks:
     - name: deploy-coffeeshop-demo
       taskRef:
