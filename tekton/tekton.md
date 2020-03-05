@@ -40,7 +40,7 @@ The `TriggerBinding` contains the parameters you want to use in your `Pipeline` 
 
 The `TriggerTemplate` contains the `PipelineRun` that you want to execute as a result of your trigger along with the parameters you need.
 
-### Authentication
+### Authentication and Authorization
 
 The `EventListener` will require several roles in the namespace to be able to function properly. As a base, it will need permissions to interact with each of the pipeline component resources as well as the `Configmaps` and `Secrets`.
 
