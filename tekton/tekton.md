@@ -8,7 +8,7 @@ The `PipelineRun` resource executes the pipeline with specific parameters and re
 
 The `Pipeline` resource is the template/specification that the `PipelineRun` will use to execute. It will contain 1 or more tasks that you want to run and the `PipelineResources` you need for the tasks.
 
-The `PipelineResource` contains the input or task outputs which can be referenced between tasks.
+The `PipelineResource` contains the desired inputs or outputs from specific tasks which can be used in other tasks within the pipeline, e.g. one task outputs the location of a new image that another task down the line can consume.
 
 Lastly, the `Task` resource contains the individual steps you want to execute in your pipeline.
 
@@ -45,6 +45,9 @@ The `TriggerTemplate` contains the `PipelineRun` that you want to execute as a r
 The `EventListener` will require several roles in the namespace to be able to function properly. As a base, it will need permissions to interact with each of the pipeline component resources as well as the `Configmaps` and `Secrets`.
 
 ## Resources
-* Tekton Triggers: https://github.com/tektoncd/triggers/tree/master
-* Tekton Pipelines: https://github.com/tektoncd/pipeline
-* Tekton Authentication: https://github.com/tektoncd/pipeline/blob/master/docs/auth.md
+* [Tekton Triggers](https://github.com/tektoncd/triggers/tree/master)
+* [Tekton Pipelines](https://github.com/tektoncd/pipeline)
+* [Tekton Authentication](https://github.com/tektoncd/pipeline/blob/master/docs/auth.md)
+* [Tekton Event Interceptors](https://github.com/tektoncd/triggers/blob/master/docs/eventlisteners.md#Interceptors)
+* [CEL Language Definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md)
+* [Tekton CEL Extensions](https://github.com/tektoncd/triggers/blob/master/docs/cel_expressions.md)
