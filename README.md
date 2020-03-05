@@ -39,12 +39,12 @@ This GitOps project assumes that the following already exists in your deployment
     apiVersion: operators.coreos.com/v1
     kind: OperatorSource
     metadata:
-    name: redhat-developer-operators
-    namespace: openshift-marketplace
+      name: redhat-developer-operators
+      namespace: openshift-marketplace
     spec:
-    type: appregistry
-    endpoint: https://quay.io/cnr
-    registryNamespace: redhat-developer
+      type: appregistry
+      endpoint: https://quay.io/cnr
+      registryNamespace: redhat-developer
     EOS
     ```
     This step is needed as the operator is not officially released to the OperatorHub yet.
