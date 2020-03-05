@@ -1,0 +1,28 @@
+apiVersion: apps.openshift.io/v1alpha1
+kind: ServiceBindingRequest
+metadata:
+  name: barista-kafka
+spec:
+  # applicationSelector isn't needed anymore once https://github.com/redhat-developer/service-binding-operator/issues/296 is implemented
+  applicationSelector:
+    group: apps
+    resource: deployments
+    resourceRef: barista-kafka
+    version: v1
+  # Service Binding Operator doesn't support binding across namespaces until https://github.com/redhat-developer/service-binding-operator/issues/314 is implemented.
+  # Assumption: Kafka and the application are deployed to the same namespace
+  backingServiceSelector:
+    group: kafka.strimzi.io
+    kind: Kafka
+    resourceRef: my-cluster
+    version: v1beta1
+  customEnvVar:
+    - name: KAFKA_BOOTSTRAP_SERVERS
+      value: |-
+        {{- range .status.listeners -}}
+          {{- if and (eq .type "plain") (gt (len .addresses) 0) -}}
+            {{- with (index .addresses 0) -}}
+              {{ .host }}:{{ .port }}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
