@@ -1,0 +1,35 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: generic-branch-binding
+  namespace: coffeeshop-pipelines
+spec:
+  params:
+    - name: message
+      value: "Binding to $(body.ref) branch successful"
+    - name: pipeline-name-suffix
+      value: generic
+---
+apiVersion: tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: master-branch-binding
+  namespace: coffeeshop-pipelines
+spec:
+  params:
+    - name: message
+      value: "Binding to $(body.ref) branch successful"
+    - name: pipeline-name-suffix
+      value: master
+---
+apiVersion: tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: git-binding
+  namespace: coffeeshop-pipelines
+spec:
+  params:
+    - name: gitrevision
+      value: $(body.head_commit.id)
+    - name: giturl
+      value: $(body.repository.clone_url)

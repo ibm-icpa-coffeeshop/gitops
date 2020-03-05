@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: event-listener
+  namespace: coffeeshop-pipelines
+spec:
+  serviceAccountName: pipeline-service-account
+  triggers:
+    - name: tektontrigger-branch-trigger
+      interceptors:
+        - cel:
+            filter: "header.match('X-GitHub-Event','push') && body.ref != 'refs/heads/master'"
+      bindings:
+        - name: generic-branch-binding
+        - name: git-binding
+      template:
+        name: pipeline-template
+    - name: master-trigger
+      interceptors:
+        - cel:
+            filter: "header.match('X-GitHub-Event','push') && body.ref == 'refs/heads/master'"
+      bindings:
+        - name: master-branch-binding
+        - name: git-binding
+      template:
+        name: pipeline-template

@@ -11,7 +11,14 @@ spec:
     params:
       - name: pathToYaml
         description: Path to the kustomize yaml file within the git source
+      - name: message
+        description: The message that will be echoed.
   steps:
+    - name: output-message
+      image: bash
+      command: ["bash", "-c"]
+      args:
+        - echo -e 'Trigger Message - $(inputs.params.message)'
     - name: run-kubectl-apply-k
       image: bitnami/kubectl
       command: ["kubectl"]

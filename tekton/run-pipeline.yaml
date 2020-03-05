@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineRun
 metadata:
-  generateName: run-deploy-pipeline-
+  generateName: run-deploy-pipeline-local-
   namespace: coffeeshop-pipelines
 spec:
   serviceAccountName: pipeline-service-account

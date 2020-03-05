@@ -39,12 +39,12 @@ This GitOps project assumes that the following already exists in your deployment
     apiVersion: operators.coreos.com/v1
     kind: OperatorSource
     metadata:
-    name: redhat-developer-operators
-    namespace: openshift-marketplace
+      name: redhat-developer-operators
+      namespace: openshift-marketplace
     spec:
-    type: appregistry
-    endpoint: https://quay.io/cnr
-    registryNamespace: redhat-developer
+      type: appregistry
+      endpoint: https://quay.io/cnr
+      registryNamespace: redhat-developer
     EOS
     ```
     This step is needed as the operator is not officially released to the OperatorHub yet.
@@ -116,24 +116,41 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 1. Click on the **SYNC** button on the **coffeeshop-dev** application tile.
 
-### GitOps with Tekton
+### GitOps with Tekton on Openshift
 
-**Installing Tekton**
+**Create a namespace to place all of your pipeline components in**
 
-* `kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.10.1/release.yaml`
-
-**Update Secrets**
-
-In the `tekton/git-secrets.yaml` file, change the password to a personal access token that you created on GitHub. The personal access token should specify the following scopes: `public_repo` , `read:repo_hook` and `write:repo_hook`.
-
-**Deploy using Tekton**
-
-* `cd tekton`
 * `kubectl create ns coffeeshop-pipelines`
-* `kubectl apply -f git-secrets.yaml`
-* `kubectl apply -f serviceaccount.yaml`
-* `kubectl apply -f pipeline-roles.yaml`
-* `kubectl apply -f task-deploy.yaml`
-* `kubectl apply -f pipeline-resources.yaml`
-* `kubectl apply -f pipeline-deploy.yaml`
-* `kubectl create -f run-pipeline.yaml` 
+
+**Installing Openshift pipelines**
+
+* Install the OpenShift Pipelines Operator from OperatorHub
+
+**Setup Authentication for the pipeline**
+
+* In the `tekton/git-secrets.yaml` file, update the following fields:
+  * `password` to a personal access token that you created on GitHub. The personal access token should specify the following scopes: `public_repo` , `read:repo_hook` and `write:repo_hook`.
+  * `webhooksecret` with a randomly generated password.
+* `kubectl apply -f tekton/authentication/git-secrets.yaml`
+* `kubectl apply -f tekton/authentication/serviceaccount.yaml`
+* `kubectl apply -f tekton/authentication/pipeline-clusterroles.yaml`
+* `kubectl apply -f tekton/authentication/pipeline-roles.yaml`
+
+**Deploy the pipeline components**
+
+* `kubectl apply -f tekton/task-deploy.yaml`
+* `kubectl apply -f tekton/pipeline-resources.yaml`
+* `kubectl apply -f tekton/pipeline-deploy.yaml`
+
+**Setup GitHub webhook and deploy triggers**
+
+* Create webhook on GitHub, specifying the `Payload URL` to `http://<HOST>:80` where host is the same as from the ingress file above and `Secret` to the `webhooksecret` from the secret file.
+* `kubectl apply -f tekton/webhook/eventlistener.yaml`
+* `kubectl apply -f tekton/webhook/triggertemplate.yaml`
+* `kubectl apply -f tekton/webhook/triggerbindings.yaml`
+* In the `ingress.yaml` file, substitute `INGRESS_ROUTER_HOSTNAME` with the actual ingress hostname. This can be found in the environment variables for the ingress pod under `ROUTER_CANONICAL_HOSTNAME` in the `openshift-ingress` project. 
+* `kubectl apply -f tekton/webhook/ingress.yaml`
+
+**Manually run the pipeline which will deploy your resources**
+
+* `kubectl create -f tekton/run-pipeline.yaml` 
