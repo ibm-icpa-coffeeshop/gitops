@@ -1,3 +1,5 @@
 bases:
   - ../base
   - ../coffeeshop/overlays
+
+namespace: coffeeshop
