@@ -165,12 +165,12 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 * `kubectl create ns tekton-pipelines`
 * Generate a password and enter the following in your command line `export PASSWORD=<password you created>`. The next script will use this variable to generate certificates.
-* `./tekton/authentication/generate-tls-certs.sh`
+* `./tekton/dashboard/generate-tls-certs.sh`
 * You will need to replace the `tls.crt` and `tls.key` values with the certificate and key that was generated from the previous script. Use the following commands to encrypt the files:
-  * `echo tekton/authentication/tekton-key.pem | base64 -w 0`
-  * `echo tekton/authentication/tekton-cert.pem | base64 -w 0`
+  * `echo tekton/dashboard/tekton-key.pem | base64 -w 0`
+  * `echo tekton/dashboard/tekton-cert.pem | base64 -w 0`
 * `kubectl apply -f https://github.com/tektoncd/dashboard/releases/download/v0.5.2/openshift-tekton-dashboard-release.yaml --validate=false`
-* `kubectl apply -f tekton/authentication/tekton-dashboard-secret.yaml`
+* `kubectl apply -f tekton/dashboard/tekton-dashboard-secret.yaml`
 * In the `ingress.yaml` file, substitute `INGRESS_ROUTER_HOSTNAME` with the canonical hostname for the OpenShift ingress router. For example: `host: tekton.dashboard.apps.mycluster.myorg.com`. This can be found by either:
   * using the OpenShift UI, find the `ROUTER_CANONICAL_HOSTNAME` environment variable defined in the `router-default` deployment in the `openshift-ingress` project,
   * via the command line as follows: `oc describe deployment router-default -n openshift-ingress | grep HOSTNAME`
