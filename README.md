@@ -128,8 +128,9 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 **Setup Authentication for the pipeline**
 
-* In the `tekton/git-secrets.yaml` file, update the following fields:
+* In the `tekton/authentication/git-secrets.yaml` file, update the following fields:
   * `password` to a personal access token that you created on GitHub. The personal access token should specify the following scopes: `public_repo` , `read:repo_hook` and `write:repo_hook`.
+    * TODO: is repo_hook needed if we are creating webhook manually?
   * `webhooksecret` with a randomly generated password.
 * `kubectl apply -f tekton/authentication/git-secrets.yaml`
 * `kubectl apply -f tekton/authentication/serviceaccount.yaml`
@@ -144,12 +145,18 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 **Setup GitHub webhook and deploy triggers**
 
-* Create webhook on GitHub, specifying the `Payload URL` to `http://<HOST>:80` where host is the same as from the ingress file above and `Secret` to the `webhooksecret` from the secret file.
 * `kubectl apply -f tekton/webhook/eventlistener.yaml`
 * `kubectl apply -f tekton/webhook/triggertemplate.yaml`
 * `kubectl apply -f tekton/webhook/triggerbindings.yaml`
-* In the `ingress.yaml` file, substitute `INGRESS_ROUTER_HOSTNAME` with the actual ingress hostname. This can be found in the environment variables for the ingress pod under `ROUTER_CANONICAL_HOSTNAME` in the `openshift-ingress` project. 
+* In the `ingress.yaml` file, substitute `INGRESS_ROUTER_HOSTNAME` with the canonical hostname for the OpenShift ingress router. For example: `host: eventlistener.apps.mycluster.myorg.com`. This can be found by either:
+  * using the OpenShift UI, find the `ROUTER_CANONICAL_HOSTNAME` environment variable defined in the `router-default` deployment in the `openshift-ingress` project,
+  * via the command line as follows: `oc describe deployment router-default -n openshift-ingress | grep HOSTNAME`
 * `kubectl apply -f tekton/webhook/ingress.yaml`
+* Create webhook on GitHub, specifying:
+  * "Payload URL" as `http://eventlistener.<HOST>:80` where host is the same as from the ingress file above,
+  * "Secret" as the `webhooksecret` from the secret file,
+  * "Content-Type" as `application/json`,
+  * leave the "Just the push event" trigger option selected.
 
 **Manually run the pipeline which will deploy your resources**
 
