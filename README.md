@@ -147,6 +147,7 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
    * "Content-Type" as `application/json`.
    * In "Events" leave the "Just the push event" trigger option selected.
 1. Deploy the trigger components:
+   * `kubectl apply -f tekton/trigger/git-secrets.yaml`
    * `kubectl apply -f tekton/trigger/pipeline-roles.yaml`
    * `kubectl apply -f tekton/trigger/eventlistener.yaml`
    * `kubectl apply -f tekton/trigger/triggertemplate.yaml`
