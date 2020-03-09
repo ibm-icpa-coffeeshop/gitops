@@ -131,14 +131,8 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
    * `kubectl apply -f tekton/pipeline/task-deploy.yaml`
    * `kubectl apply -f tekton/pipeline/pipeline-resources.yaml`
    * `kubectl apply -f tekton/pipeline/pipeline-deploy.yaml`
-1. Now you can manually run the pipeline which will deploy your resources. This can be achieved by:
-   * Using the command line.  
-   `kubectl create -f tekton/pipeline/run-pipeline.yaml` 
-   * Using the OpenShift UI.  
-     * Navigate to the "Pipelines" section.
-     * Select "Pipelines".
-     * Select the menu for `pipeline-deploy`.
-     * Select "Start" and enter the values.
+1. Now you can manually run the pipeline which will deploy your resources.
+   * `kubectl create -f tekton/pipeline/run-pipeline.yaml`
 
 **Triggers**
 
