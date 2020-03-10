@@ -143,7 +143,7 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 1. Update the `webhooksecret` field in the `tekton/trigger/git-secrets.yaml` file to a randomly generated secret.
 1. Create webhook on GitHub, specifying:
    * "Payload URL" as `http://eventlistener.<HOST>:80` where host is the same as from the ingress file above.
-   * "Secret" as the `webhooksecret` from the secret file.
+   * "Secret" as the `webhooksecret` from `tekton/trigger/git-secrets.yaml`.
    * "Content-Type" as `application/json`.
    * In "Events" leave the "Just the push event" trigger option selected.
 1. Deploy the trigger components:
@@ -159,7 +159,7 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 1. Generate a password and enter the following in your command line `export PASSWORD=<password you created>`. The next script will use this variable to generate the certificate.
 1. Create the certificate and key:  
 `./tekton/dashboard/generate-tls-certs.sh`
-1. You will need to replace the `tls.crt` and `tls.key` values with the certificate and key that was generated from the previous script. Use the following commands to encrypt the files:
+1. You will need to replace the `tls.crt` and `tls.key` values with the certificate and key that was generated from the previous script. Use the following commands to encode the files to replace the above values with:
    * `echo tekton/dashboard/tekton-key.pem | base64 -w 0`
    * `echo tekton/dashboard/tekton-cert.pem | base64 -w 0`
 1. In the `ingress.yaml` file, substitute `INGRESS_ROUTER_HOSTNAME` with the canonical hostname for the OpenShift ingress router. For example: `host: tekton.dashboard.apps.mycluster.myorg.com`. This can be found by either:
