@@ -9,6 +9,8 @@ spec:
       value: "Binding to $(body.ref) branch successful"
     - name: pipeline-name-suffix
       value: generic
+    - name: branch
+      value: $(body.ref)
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding
@@ -21,6 +23,8 @@ spec:
       value: "Binding to $(body.ref) branch successful"
     - name: pipeline-name-suffix
       value: master
+    - name: branch
+      value: $(body.ref)
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding

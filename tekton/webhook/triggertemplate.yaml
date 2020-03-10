@@ -11,6 +11,8 @@ spec:
       description: The suffix to use for the pipeline name
     - name: gitrevision
     - name: giturl
+    - name: branch
+      description: The branch that started the pipeline
   resourcetemplates:
     - apiVersion: tekton.dev/v1alpha1
       kind: PipelineRun
@@ -35,3 +37,5 @@ spec:
             value: overlays
           - name: message
             value: $(params.message)
+          - name: branch
+            value: $(params.branch)
