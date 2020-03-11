@@ -33,8 +33,6 @@ spec:
               - name: url
                 value: $(params.giturl)
         params:
-          - name: pathToYaml
-            value: overlays
           - name: message
             value: $(params.message)
           - name: branch

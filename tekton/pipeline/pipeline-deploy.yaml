@@ -8,8 +8,6 @@ spec:
     - name: git-source
       type: git
   params:
-    - name: pathToYaml
-      description: Path to the kustomize yaml file within the git source
     - name: message
       default: Local deployment pipeline has started
     - name: branch
@@ -23,8 +21,6 @@ spec:
           - name: git-source
             resource: git-source
       params:
-        - name: pathToYaml
-          value: $(params.pathToYaml)
         - name: message
           value: $(params.message)
         - name: branch
