@@ -7,8 +7,8 @@ metadata:
     build-date: 2019-10-29T16:44:53.794580
     commit.image.appsody.dev/author: Matthew P Wilson <matthew.wilson@uk.ibm.com>
     commit.image.appsody.dev/committer: GitHub Enterprise <noreply@github.ibm.com>
-    commit.image.appsody.dev/date: Tue Feb 25 12:40:03 2020 +0000
-    commit.image.appsody.dev/message: 'Merge pull request #2 from appsody-coffeeshop/app-name'
+    commit.image.appsody.dev/date: Tue Feb 25 13:13:29 2020 +0000
+    commit.image.appsody.dev/message: 'Merge pull request #4 from appsody-coffeeshop/update-deploy'
     commit.stack.appsody.dev/author: Scott Kurz <skurz@us.ibm.com>
     commit.stack.appsody.dev/committer: GitHub <noreply@github.com>
     commit.stack.appsody.dev/contextDir: /incubator/java-openliberty
@@ -20,9 +20,9 @@ metadata:
       technologies through subscriptions for Red Hat products. This image is maintained
       by Red Hat and updated regularly.
     distribution-scope: public
-    image.opencontainers.org/created: "2020-02-25T12:41:14Z"
+    image.opencontainers.org/created: "2020-03-05T10:04:31Z"
     image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui
-    image.opencontainers.org/revision: acf07e636902e8947fcfaf7bdfec1a78aa30fe88-modified
+    image.opencontainers.org/revision: b88569e22d42f7935bf75c9cd53f3bbb63f4fa6e-modified
     image.opencontainers.org/source: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui/tree/master
     image.opencontainers.org/url: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui
     k8s.io/description: The Universal Base Image is designed and engineered to be
@@ -59,7 +59,7 @@ metadata:
     version: "8.1"
   creationTimestamp: null
   labels:
-    app.appsody.dev/name: coffeeshop
+    app.kubernetes.io/part-of: coffeeshop
     image.opencontainers.org/title: coffeeshop-ui
     stack.appsody.dev/id: java-openliberty
     stack.appsody.dev/version: 0.2.2
@@ -94,4 +94,3 @@ spec:
         namespace: default
   stack: java-openliberty
   version: 1.0.0
-status: {}
