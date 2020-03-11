@@ -118,46 +118,57 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 
 ### GitOps with Tekton on Openshift
 
-**Create a namespace to place all of your pipeline components in**
+**Pipelines**
 
-* `kubectl create ns coffeeshop-pipelines`
+1. Install the OpenShift Pipelines Operator from OperatorHub.
+1. Create a personal access token on GitHub with the `public_repo` scope.
+1. Update the `password` field in the `tekton/pipeline/git-secrets.yaml` file to the personal access token created in the previous step.
+1. Deploy the pipeline components:
+   * `kubectl create ns coffeeshop-pipelines`
+   * `kubectl apply -f tekton/serviceaccount.yaml`
+   * `kubectl apply -f tekton/pipeline/git-secrets.yaml`
+   * `kubectl apply -f tekton/pipeline/pipeline-clusterroles.yaml`
+   * `kubectl apply -f tekton/pipeline/task-deploy.yaml`
+   * `kubectl apply -f tekton/pipeline/pipeline-resources.yaml`
+   * `kubectl apply -f tekton/pipeline/pipeline-deploy.yaml`
+1. Now you can manually run the pipeline which will deploy your resources.
+   * `kubectl create -f tekton/pipeline/run-pipeline.yaml`
 
-**Installing Openshift pipelines**
+**Triggers**
 
-* Install the OpenShift Pipelines Operator from OperatorHub
+1. In the `ingress.yaml` file, substitute `<INGRESS_ROUTER_HOSTNAME>` with the canonical hostname for the OpenShift ingress router. For example: `host: eventlistener.apps.mycluster.myorg.com`. This can be found by either:
+   * using the OpenShift UI, find the `ROUTER_CANONICAL_HOSTNAME` environment variable defined in the `router-default` deployment in the `openshift-ingress` project,
+   * via the command line as follows:  
+   `oc describe deployment router-default -n openshift-ingress | grep HOSTNAME`
+1. Update the `webhooksecret` field in the `tekton/trigger/git-secrets.yaml` file to a randomly generated secret.
+1. Create webhook on GitHub, specifying:
+   * "Payload URL" as `http://eventlistener.<HOST>:80` where host is the same as from the ingress file above.
+   * "Secret" as the `webhooksecret` from `tekton/trigger/git-secrets.yaml`.
+   * "Content-Type" as `application/json`.
+   * In "Events" leave the "Just the push event" trigger option selected.
+1. Deploy the trigger components:
+   * `kubectl apply -f tekton/trigger/git-secrets.yaml`
+   * `kubectl apply -f tekton/trigger/pipeline-roles.yaml`
+   * `kubectl apply -f tekton/trigger/eventlistener.yaml`
+   * `kubectl apply -f tekton/trigger/triggertemplate.yaml`
+   * `kubectl apply -f tekton/trigger/triggerbindings.yaml`
+   * `kubectl apply -f tekton/trigger/ingress.yaml`
 
-**Setup Authentication for the pipeline**
+**Dashboard**
 
-* In the `tekton/authentication/git-secrets.yaml` file, update the following fields:
-  * `password` to a personal access token that you created on GitHub. The personal access token should specify the following scopes: `public_repo` , `read:repo_hook` and `write:repo_hook`.
-    * TODO: is repo_hook needed if we are creating webhook manually?
-  * `webhooksecret` with a randomly generated password.
-* `kubectl apply -f tekton/authentication/git-secrets.yaml`
-* `kubectl apply -f tekton/authentication/serviceaccount.yaml`
-* `kubectl apply -f tekton/authentication/pipeline-clusterroles.yaml`
-* `kubectl apply -f tekton/authentication/pipeline-roles.yaml`
-
-**Deploy the pipeline components**
-
-* `kubectl apply -f tekton/task-deploy.yaml`
-* `kubectl apply -f tekton/pipeline-resources.yaml`
-* `kubectl apply -f tekton/pipeline-deploy.yaml`
-
-**Setup GitHub webhook and deploy triggers**
-
-* `kubectl apply -f tekton/webhook/eventlistener.yaml`
-* `kubectl apply -f tekton/webhook/triggertemplate.yaml`
-* `kubectl apply -f tekton/webhook/triggerbindings.yaml`
-* In the `ingress.yaml` file, substitute `INGRESS_ROUTER_HOSTNAME` with the canonical hostname for the OpenShift ingress router. For example: `host: eventlistener.apps.mycluster.myorg.com`. This can be found by either:
-  * using the OpenShift UI, find the `ROUTER_CANONICAL_HOSTNAME` environment variable defined in the `router-default` deployment in the `openshift-ingress` project,
-  * via the command line as follows: `oc describe deployment router-default -n openshift-ingress | grep HOSTNAME`
-* `kubectl apply -f tekton/webhook/ingress.yaml`
-* Create webhook on GitHub, specifying:
-  * "Payload URL" as `http://eventlistener.<HOST>:80` where host is the same as from the ingress file above,
-  * "Secret" as the `webhooksecret` from the secret file,
-  * "Content-Type" as `application/json`,
-  * leave the "Just the push event" trigger option selected.
-
-**Manually run the pipeline which will deploy your resources**
-
-* `kubectl create -f tekton/run-pipeline.yaml` 
+1. Generate a password and enter the following in your command line `export PASSWORD=<password you created>`. The next script will use this variable to generate the certificate.
+1. Create the certificate and key:  
+`./tekton/dashboard/generate-tls-certs.sh`
+1. In the `tekton/dashboard/tekton-dashboard-secret.yaml` file you will need to replace the `tls.crt` and `tls.key` values with the certificate and key that was generated from the previous script. Use the following commands to encode the files to replace the above values with:
+   * `echo tekton/dashboard/tekton-key.pem | base64 -w 0`
+   * `echo tekton/dashboard/tekton-cert.pem | base64 -w 0`
+1. In the `ingress.yaml` file, substitute `INGRESS_ROUTER_HOSTNAME` with the canonical hostname for the OpenShift ingress router. For example: `host: tekton.dashboard.apps.mycluster.myorg.com`. This can be found by either:
+   * using the OpenShift UI, find the `ROUTER_CANONICAL_HOSTNAME` environment variable defined in the `router-default` deployment in the `openshift-ingress` project,
+   * via the command line as follows:  
+   `oc describe deployment router-default -n openshift-ingress | grep HOSTNAME`
+1. Deploy the dashboard components.
+   * `kubectl create ns tekton-pipelines`
+   * `kubectl apply -f https://github.com/tektoncd/dashboard/releases/download/v0.5.2/openshift-tekton-dashboard-release.yaml --validate=false`
+   * `kubectl apply -f tekton/dashboard/tekton-dashboard-secret.yaml`
+   * `kubectl apply -f tekton/dashboard/ingress.yaml` 
+1. You can find the url for the dashboard in the `Routes` in the `tekton-pipelines` project.
