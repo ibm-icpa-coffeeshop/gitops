@@ -30,6 +30,11 @@ spec:
       log.message.format.version: "2.3"
     storage:
       type: ephemeral
+    metrics:
+      rules:
+        - pattern: kafka.(\w+)<type=(.+), name=(.+)PerSec\w*><>Count
+          name: kafka_$1_$2_$3_total
+          type: COUNTER
   zookeeper:
     replicas: 1
     storage:

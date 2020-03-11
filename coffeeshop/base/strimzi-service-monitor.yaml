@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kafka-service-monitor
+  namespace: coffeeshop
+spec:
+  selector:
+    matchLabels:
+      strimzi.io/kind: Kafka
+  endpoints:
+    - port: prometheus
+      path: /metrics

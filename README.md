@@ -52,6 +52,16 @@ This GitOps project assumes that the following already exists in your deployment
 * Follow the same instructions for installing the Strimzi Operator described above except the following:
     * Type **Service Binding Operator** into the Filter by keyword box.
 
+6. Prometheus Operator
+
+* Navigate in the web console to the **Operators** → **OperatorHub** page.
+* Type **Prometheus** into the **Filter by keyword** box.
+* Select the Operator and click **Install**.
+* On the **Create Operator Subscription** page:
+    * Select **A specific namespace on the cluster** and select the `coffeeshop` namespace
+    * Select **Automatic** or **Manual** approval strategy. If you choose Automatic, Operator Lifecycle Manager (OLM) automatically upgrades the operator as a new version is available.
+* Click **Subscribe**.
+
 ### GitOps with Kustomize
 
 * `cd overlays`

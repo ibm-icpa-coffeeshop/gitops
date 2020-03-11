@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus-serviceaccount
+  labels:
+    app: strimzi
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+  labels:
+    app: strimzi
+spec:
+  replicas: 1
+  serviceAccountName: prometheus-serviceaccount
+  serviceMonitorSelector:
+    matchLabels:
+      app: strimzi
