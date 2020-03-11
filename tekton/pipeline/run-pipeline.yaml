@@ -12,5 +12,5 @@ spec:
       resourceRef:
         name: gitops-git
   params:
-    - name: pathToYaml
-      value: "overlays"
+    - name: branch
+      value: dev

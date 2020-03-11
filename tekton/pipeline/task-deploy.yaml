@@ -9,10 +9,10 @@ spec:
       - name: git-source
         type: git
     params:
-      - name: pathToYaml
-        description: Path to the kustomize yaml file within the git source
       - name: message
         description: The message that will be echoed.
+      - name: branch
+        description: The branch that started the pipeline
   steps:
     - name: output-message
       image: bash
@@ -21,8 +21,7 @@ spec:
         - echo -e 'Trigger Message - $(inputs.params.message)'
     - name: run-kubectl-apply-k
       image: bitnami/kubectl
-      command: ["kubectl"]
-      args:
-        - "apply"
-        - "-k"
-        - "/workspace/git-source/$(inputs.params.pathToYaml)"
+      script: |
+        #!/usr/bin/env sh
+        name=`basename $(inputs.params.branch)`
+        kubectl apply -k /workspace/git-source/env/$name
