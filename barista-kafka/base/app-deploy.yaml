@@ -44,6 +44,6 @@ spec:
   expose: true
   service:
     port: 8080
-    type: NodePort
+    type: ClusterIP
   stack: quarkus
   version: 1.0.0
