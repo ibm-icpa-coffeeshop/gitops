@@ -6,13 +6,24 @@ metadata:
 spec:
   serviceAccountName: pipeline-service-account
   triggers:
-    - name: tektontrigger-branch-trigger
+    - name: staging-branch-trigger
       interceptors:
         - cel:
-            filter: "header.match('X-GitHub-Event','push') && body.ref != 'refs/heads/master'"
+            filter: "header.match('X-GitHub-Event','push') && body.ref == 'refs/heads/staging'"
       bindings:
-        - name: generic-branch-binding
+        - name: ref-branch-binding
         - name: git-binding
+        - name: pipeline-staging-binding
+      template:
+        name: pipeline-template
+    - name: prod-branch-trigger
+      interceptors:
+        - cel:
+            filter: "header.match('X-GitHub-Event','push') && body.ref == 'refs/heads/prod'"
+      bindings:
+        - name: ref-branch-binding
+        - name: git-binding
+        - name: pipeline-prod-binding
       template:
         name: pipeline-template
     - name: master-trigger
@@ -22,5 +33,6 @@ spec:
       bindings:
         - name: master-branch-binding
         - name: git-binding
+        - name: pipeline-dev-binding
       template:
         name: pipeline-template

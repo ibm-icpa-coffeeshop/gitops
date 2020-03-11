@@ -5,13 +5,13 @@ metadata:
     cekit.io/version: 3.5.0
     commit.image.appsody.dev/author: Matthew P Wilson <matthew.wilson@uk.ibm.com>
     commit.image.appsody.dev/committer: GitHub Enterprise <noreply@github.ibm.com>
-    commit.image.appsody.dev/date: Tue Feb 25 10:16:15 2020 +0000
-    commit.image.appsody.dev/message: 'Merge pull request #1 from appsody-coffeeshop/app-name'
+    commit.image.appsody.dev/date: Tue Feb 25 13:14:50 2020 +0000
+    commit.image.appsody.dev/message: 'Merge pull request #2 from appsody-coffeeshop/update-deploy'
     graalvm-archive-filename: graalvm-ce-linux-amd64-19.2.1.tar.gz
     graalvm-archive-url: https://github.com/oracle/graal/releases/download/vm-19.2.1/graalvm-ce-linux-amd64-19.2.1.tar.gz
-    image.opencontainers.org/created: "2020-02-25T12:40:46Z"
+    image.opencontainers.org/created: "2020-03-05T09:45:56Z"
     image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/barista-kafka
-    image.opencontainers.org/revision: bbc87848be373bdd7000bb1735ddc63dddbeee94-modified
+    image.opencontainers.org/revision: 653dcfc0bfc06c0fbac57f0347adf9ca587f712c-modified
     image.opencontainers.org/source: https://github.ibm.com/appsody-coffeeshop/barista-kafka/tree/master
     image.opencontainers.org/url: https://github.ibm.com/appsody-coffeeshop/barista-kafka
     k8s.io/description: Quarkus.io builder image for building Quarkus applications.
@@ -33,7 +33,7 @@ metadata:
     stack.appsody.dev/title: Quarkus
   creationTimestamp: null
   labels:
-    app.appsody.dev/name: coffeeshop
+    app.kubernetes.io/part-of: coffeeshop
     image.opencontainers.org/title: barista-kafka
     stack.appsody.dev/id: quarkus
     stack.appsody.dev/version: 0.2.3
@@ -47,4 +47,3 @@ spec:
     type: NodePort
   stack: quarkus
   version: 1.0.0
-status: {}

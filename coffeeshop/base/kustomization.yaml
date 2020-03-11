@@ -2,7 +2,4 @@ resources:
 #- application.yaml
 #- kafka.yaml
 
-bases:
-- ../../barista-kafka/base
-- ../../coffeeshop-ui/base
-- ../../barista-http/base
+
