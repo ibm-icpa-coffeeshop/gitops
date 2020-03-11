@@ -159,7 +159,7 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
 1. Generate a password and enter the following in your command line `export PASSWORD=<password you created>`. The next script will use this variable to generate the certificate.
 1. Create the certificate and key:  
 `./tekton/dashboard/generate-tls-certs.sh`
-1. You will need to replace the `tls.crt` and `tls.key` values with the certificate and key that was generated from the previous script. Use the following commands to encode the files to replace the above values with:
+1. In the `tekton/dashboard/tekton-dashboard-secret.yaml` file you will need to replace the `tls.crt` and `tls.key` values with the certificate and key that was generated from the previous script. Use the following commands to encode the files to replace the above values with:
    * `echo tekton/dashboard/tekton-key.pem | base64 -w 0`
    * `echo tekton/dashboard/tekton-cert.pem | base64 -w 0`
 1. In the `ingress.yaml` file, substitute `INGRESS_ROUTER_HOSTNAME` with the canonical hostname for the OpenShift ingress router. For example: `host: tekton.dashboard.apps.mycluster.myorg.com`. This can be found by either:
