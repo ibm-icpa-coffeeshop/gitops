@@ -1,14 +1,12 @@
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
-  name: generic-branch-binding
+  name: ref-branch-binding
   namespace: coffeeshop-pipelines
 spec:
   params:
     - name: message
       value: "Binding to $(body.ref) branch successful"
-    - name: pipeline-name-suffix
-      value: generic
     - name: branch
       value: $(body.ref)
 ---
@@ -21,10 +19,38 @@ spec:
   params:
     - name: message
       value: "Binding to $(body.ref) branch successful"
-    - name: pipeline-name-suffix
-      value: master
     - name: branch
-      value: $(body.ref)
+      value: dev
+---
+apiVersion: tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: pipeline-staging-binding
+  namespace: coffeeshop-pipelines
+spec:
+  params:
+    - name: pipeline-name-suffix
+      value: staging
+---
+apiVersion: tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: pipeline-prod-binding
+  namespace: coffeeshop-pipelines
+spec:
+  params:
+    - name: pipeline-name-suffix
+      value: prod
+---
+apiVersion: tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: pipeline-dev-binding
+  namespace: coffeeshop-pipelines
+spec:
+  params:
+    - name: pipeline-name-suffix
+      value: dev
 ---
 apiVersion: tekton.dev/v1alpha1
 kind: TriggerBinding
