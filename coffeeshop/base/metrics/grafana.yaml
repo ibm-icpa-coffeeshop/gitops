@@ -1,0 +1,37 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDataSource
+metadata:
+  name: grafana-datasource
+  namespace: coffeeshop-monitoring
+spec:
+  name: grafana-datasources.yaml
+  datasources:
+    - name: Prometheus
+      type: prometheus
+      version: 1
+      url: 'http://prometheus-operated:9090'
+      access: proxy
+      editable: true
+      isDefault: true
+      jsonData:
+        timeInterval: 5s
+---
+apiVersion: integreatly.org/v1alpha1
+kind: Grafana
+metadata:
+  name: grafana
+  namespace: coffeeshop-monitoring
+spec:
+  ingress:
+    enabled: true
+  config:
+    auth:
+      disable_signout_menu: true
+    auth.anonymous:
+      enabled: true
+  dashboardLabelSelector:
+    - matchExpressions:
+        - key: app
+          operator: In
+          values:
+            - grafana

@@ -52,15 +52,41 @@ This GitOps project assumes that the following already exists in your deployment
 * Follow the same instructions for installing the Strimzi Operator described above except the following:
     * Type **Service Binding Operator** into the Filter by keyword box.
 
-6. Prometheus Operator
+6. Prometheus Operator (Optional)
+
+* `kubectl create ns coffeeshop-monitoring`
+* Navigate in the web console to the **Operators** → **OperatorHub** page.
+* Type **Prometheus** into the **Filter by keyword** box.
+* Select the Operator and click **Install**.
+* On the **Create Operator Subscription** page:
+    * Select **A specific namespace on the cluster** and select the `coffeeshop-monitoring` namespace
+    * Select **Automatic** or **Manual** approval strategy. If you choose Automatic, Operator Lifecycle Manager (OLM) automatically upgrades the operator as a new version is available.
+* Click **Subscribe**.
+* In the `coffeeshop/base/metrics/prometheus-config-secret.yaml` file you will need to replace the value of `prometheus-additional-config.yaml` with the base64 encoded contents of the file with the same name. Use the following command to encode the file contents to replace the above values with:
+   * `cat coffeeshop/base/metrics/prometheus-additional-config.yaml | base64 -w 0`
+1. In the `coffeeshop/base/metrics/prometheus-ingress.yaml` file, substitute `INGRESS_ROUTER_HOSTNAME` with the canonical hostname for the OpenShift ingress router. For example: `host: prometheus-service.apps.mycluster.myorg.com`. This can be found by either:
+   * using the OpenShift UI, find the `ROUTER_CANONICAL_HOSTNAME` environment variable defined in the `router-default` deployment in the `openshift-ingress` project,
+   * via the command line as follows:  
+   `oc describe deployment router-default -n openshift-ingress | grep HOSTNAME`
+* `cd coffeeshop/base/metrics`
+* `kubectl apply -f prometheus-config-secret.yaml`
+* `kubectl apply -f prometheus.yaml`
+* `kubectl apply -f prometheus-clusterroles.yaml`
+* `kubectl apply -f strimzi-service-monitor.yaml`
+* `kubectl apply -f prometheus-ingress.yaml`
+
+7. Grafana Operator (Optional)
 
 * Navigate in the web console to the **Operators** → **OperatorHub** page.
 * Type **Prometheus** into the **Filter by keyword** box.
 * Select the Operator and click **Install**.
 * On the **Create Operator Subscription** page:
-    * Select **A specific namespace on the cluster** and select the `coffeeshop` namespace
+    * Select **A specific namespace on the cluster** and select the `coffeeshop-monitoring` namespace
     * Select **Automatic** or **Manual** approval strategy. If you choose Automatic, Operator Lifecycle Manager (OLM) automatically upgrades the operator as a new version is available.
 * Click **Subscribe**.
+* `cd coffeeshop/base/metrics`
+* `kubectl apply -f grafana.yaml`
+* `kubectl apply -f grafana-dashboard.yaml`
 
 ### GitOps with Kustomize
 
@@ -141,7 +167,7 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
    * `kubectl apply -f tekton/pipeline/task-deploy.yaml`
    * `kubectl apply -f tekton/pipeline/pipeline-resources.yaml`
    * `kubectl apply -f tekton/pipeline/pipeline-deploy.yaml`
-1. Now you can manually run the pipeline which will deploy your resources.
+1. Now you can manually run the pipeline which will deploy your resources. (Currently you will also need to have deployed `tekton/triggers/git-secrets` otherwise the pipeline will fail)
    * `kubectl create -f tekton/pipeline/run-pipeline.yaml`
 
 **Triggers**

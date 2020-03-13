@@ -43,4 +43,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: prometheus-serviceaccount
-    namespace: coffeeshop
+    namespace: coffeeshop-monitoring

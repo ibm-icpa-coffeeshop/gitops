@@ -1,0 +1,149 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata:
+  labels:
+    app: grafana
+  name: coffeeshop-metrics-dashboard
+  namespace: coffeeshop-monitoring
+spec:
+  name: coffeeshop-metrics-dashboard.json
+  json: |
+    {
+      "__inputs": [
+         {
+           "name": "Prometheus",
+           "label": "Prometheus",
+           "description": "",
+           "type": "datasource",
+           "pluginId": "prometheus",
+           "pluginName": "Prometheus"
+         }
+       ],
+      "__requires": [
+         {
+           "type": "grafana",
+           "id": "grafana",
+           "name": "Grafana",
+           "version": "5.2.0"
+         },
+         {
+           "type": "panel",
+           "id": "graph",
+           "name": "Graph",
+           "version": "5.0.0"
+         },
+         {
+           "type": "datasource",
+           "id": "prometheus",
+           "name": "Prometheus",
+           "version": "5.0.0"
+         },
+         {
+           "type": "panel",
+           "id": "table",
+           "name": "Table",
+           "version": "5.0.0"
+         }
+       ],
+      "annotations": {
+        "list": [
+          {
+            "builtIn": 1,
+            "datasource": "-- Grafana --",
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+          }
+        ]
+      },
+      "editable": true,
+      "gnetId": null,
+      "graphTooltip": 0,
+      "id": 1,
+      "iteration": 1569353980677,
+      "links": [],
+      "panels": [
+        {
+          "type": "bargauge",
+          "title": "Consumer Lag",
+          "gridPos": {
+            "x": 0,
+            "y": 0,
+            "w": 12,
+            "h": 8
+          },
+          "id": 4,
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "refId": "A",
+              "expr": "kafka_consumergroup_lag",
+              "intervalFactor": 1,
+              "format": "time_series",
+              "legendFormat": "{{topic}}",
+              "instant": true
+            }
+          ],
+          "transparent": true,
+          "timeFrom": null,
+          "timeShift": null,
+          "links": [],
+          "options": {
+            "displayMode": "lcd",
+            "orientation": "horizontal",
+            "fieldOptions": {
+              "values": false,
+              "calcs": [
+                "last"
+              ],
+              "defaults": {
+                "min": 0,
+                "title": "",
+                "unit": "short"
+              },
+              "override": {},
+              "mappings": [],
+              "thresholds": [
+                {
+                  "index": 0,
+                  "value": null,
+                  "color": "green"
+                },
+                {
+                  "index": 1,
+                  "value": 70,
+                  "color": "orange"
+                },
+                {
+                  "color": "red",
+                  "index": 2,
+                  "value": 90
+                }
+              ]
+            }
+          },
+          "description": "This panel displays the number of messages that are currently present in the queue with the shown topic name."
+        }
+      ],
+      "refresh": "10s",
+      "schemaVersion": 19,
+      "style": "dark",
+      "tags": [],
+      "time": {
+        "from": "now-15m",
+        "to": "now"
+      },
+      "timepicker": {
+        "refresh_intervals": [
+          "1m",
+          "5m",
+          "15m",
+          "1h",
+          "1d"
+        ]
+      },
+      "title": "Coffeeshop-Metrics-Dashboard",
+      "uid": "Coffeeshop-Metrics-Dashboard"
+    }
