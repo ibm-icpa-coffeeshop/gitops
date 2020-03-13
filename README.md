@@ -64,16 +64,11 @@ This GitOps project assumes that the following already exists in your deployment
 * Click **Subscribe**.
 * In the `coffeeshop/base/metrics/prometheus-config-secret.yaml` file you will need to replace the value of `prometheus-additional-config.yaml` with the base64 encoded contents of the file with the same name. Use the following command to encode the file contents to replace the above values with:
    * `cat coffeeshop/base/metrics/prometheus-additional-config.yaml | base64 -w 0`
-1. In the `coffeeshop/base/metrics/prometheus-ingress.yaml` file, substitute `INGRESS_ROUTER_HOSTNAME` with the canonical hostname for the OpenShift ingress router. For example: `host: prometheus-service.apps.mycluster.myorg.com`. This can be found by either:
-   * using the OpenShift UI, find the `ROUTER_CANONICAL_HOSTNAME` environment variable defined in the `router-default` deployment in the `openshift-ingress` project,
-   * via the command line as follows:  
-   `oc describe deployment router-default -n openshift-ingress | grep HOSTNAME`
 * `cd coffeeshop/base/metrics`
 * `kubectl apply -f prometheus-config-secret.yaml`
 * `kubectl apply -f prometheus.yaml`
 * `kubectl apply -f prometheus-clusterroles.yaml`
 * `kubectl apply -f strimzi-service-monitor.yaml`
-* `kubectl apply -f prometheus-ingress.yaml`
 
 7. Grafana Operator (Optional)
 
