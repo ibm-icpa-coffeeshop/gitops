@@ -25,3 +25,11 @@ spec:
           value: $(params.message)
         - name: branch
           value: $(params.branch)
+    - name: run-integration-tests
+      taskRef:
+        name: run-integration-tests
+      params:
+        - name: coffeeshop-host
+          value: coffeeshop-ui-coffeeshop.apps.subject.os.fyre.ibm.com.bad
+      runAfter:
+        - deploy-coffeeshop-demo

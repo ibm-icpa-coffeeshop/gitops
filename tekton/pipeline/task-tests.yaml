@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: run-integration-tests
+  namespace: coffeeshop-pipelines
+spec:
+  inputs:
+    params:
+      - name: coffeeshop-host
+        description: Hostname for coffeeshop service
+  steps:
+    - name: run-tests
+      image: matthewpwilson/coffeeshop-integration-tests:latest
+      env:
+        - name: COFFEESHOP_URI
+          value: http://$(params.coffeeshop-host)
+        - name: MAVEN_CONFIG
+      volumeMounts:
+        - name: m2-repository
+          mountPath: /.m2
+  volumes:
+    - name: m2-repository
+      emptyDir: {}
+
+

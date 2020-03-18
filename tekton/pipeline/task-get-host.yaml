@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: get-coffeeshop-host
+  namespace: coffeeshop-pipelines
+spec:
+  inputs:
+    params:
+      - name: branch
+        description: The branch that started the pipeline
+  results:
+    - name: coffeeshop-host
+      description: Hostname where the coffeeshop service runs
+  steps:
+    - name: get-coffeeshop-host
+      image: bitnami/kubectl
+      script: |
+        #!/usr/bin/env sh
+        env=`basename $(inputs.params.branch)`
+        kubectl get route coffeeshop-ui -n $env -o=jsonpath='{.spec.host}' > /workspace/host

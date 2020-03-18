@@ -24,4 +24,4 @@ spec:
       script: |
         #!/usr/bin/env sh
         name=`basename $(inputs.params.branch)`
-        kubectl apply -k /workspace/git-source/env/$name
+        kubectl apply -k /workspace/git-source/overlays
