@@ -6,19 +6,22 @@ metadata:
 spec:
   inputs:
     params:
-      - name: coffeeshop-host
-        description: Hostname for coffeeshop service
+      - name: ns
+        description: Namespace the application will be deployed into
   steps:
+    - name: get-coffeeshop-host
+      image: bitnami/kubectl
+      script: |
+        #!/usr/bin/env sh
+
+        kubectl get route coffeeshop-ui -n $(inputs.params.ns) -o=jsonpath='{.spec.host}' > /workspace/host
     - name: run-tests
       securityContext:
         privileged: true
       image: matthewpwilson/coffeeshop-integration-tests:fri2
-      env:
-        - name: COFFEESHOP_HOST
-          value: $(inputs.params.coffeeshop-host)
       script: |
         #!/usr/bin/env sh
-        export COFFEESHOP_URI=http://$COFFEESHOP_HOST
+        export COFFEESHOP_URI=http://`cat /workspace/host`
         echo $COFFEESHOP_URI
         cd /project
         mvn clean verify

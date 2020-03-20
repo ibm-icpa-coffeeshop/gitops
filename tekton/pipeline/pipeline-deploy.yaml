@@ -10,6 +10,8 @@ spec:
   params:
     - name: message
       default: Local deployment pipeline has started
+    - name: ns
+      default: coffeeshop
   tasks:
     - name: deploy-coffeeshop-demo
       taskRef:
@@ -25,7 +27,7 @@ spec:
       taskRef:
         name: run-integration-tests
       params:
-        - name: coffeeshop-host
-          value: coffeeshop-ui-coffeeshop.apps.subject.os.fyre.ibm.com
+        - name: ns
+          value: $(params.ns)
       runAfter:
         - deploy-coffeeshop-demo
