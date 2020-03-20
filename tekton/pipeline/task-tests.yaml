@@ -10,16 +10,19 @@ spec:
         description: Hostname for coffeeshop service
   steps:
     - name: run-tests
-      image: matthewpwilson/coffeeshop-integration-tests:latest
+      securityContext:
+        privileged: true
+      image: matthewpwilson/coffeeshop-integration-tests:fri2
       env:
-        - name: COFFEESHOP_URI
-          value: http://$(params.coffeeshop-host)
-        - name: MAVEN_CONFIG
-      volumeMounts:
-        - name: m2-repository
-          mountPath: /.m2
-  volumes:
-    - name: m2-repository
-      emptyDir: {}
+        - name: COFFEESHOP_HOST
+          value: $(inputs.params.coffeeshop-host)
+      script: |
+        #!/usr/bin/env sh
+        export COFFEESHOP_URI=http://$COFFEESHOP_HOST
+        echo $COFFEESHOP_URI
+        cd /project
+        mvn clean verify
+
+
 
 

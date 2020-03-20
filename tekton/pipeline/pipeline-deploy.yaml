@@ -26,6 +26,6 @@ spec:
         name: run-integration-tests
       params:
         - name: coffeeshop-host
-          value: coffeeshop-ui-coffeeshop.apps.subject.os.fyre.ibm.com.bad
+          value: coffeeshop-ui-coffeeshop.apps.subject.os.fyre.ibm.com
       runAfter:
         - deploy-coffeeshop-demo
