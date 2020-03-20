@@ -11,6 +11,3 @@ spec:
     - name: git-source
       resourceRef:
         name: gitops-git
-  params:
-    - name: branch
-      value: dev

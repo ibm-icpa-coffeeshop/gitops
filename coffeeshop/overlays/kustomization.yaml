@@ -1,4 +1,0 @@
-bases:
-- ../../barista-kafka/overlays
-- ../../coffeeshop-ui/overlays
-- ../../barista-http/overlays

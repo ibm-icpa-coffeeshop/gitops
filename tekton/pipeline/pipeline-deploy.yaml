@@ -10,8 +10,6 @@ spec:
   params:
     - name: message
       default: Local deployment pipeline has started
-    - name: branch
-      description: The branch that started the pipeline
   tasks:
     - name: deploy-coffeeshop-demo
       taskRef:
@@ -23,5 +21,3 @@ spec:
       params:
         - name: message
           value: $(params.message)
-        - name: branch
-          value: $(params.branch)
