@@ -11,8 +11,6 @@ spec:
     params:
       - name: message
         description: The message that will be echoed.
-      - name: branch
-        description: The branch that started the pipeline
   steps:
     - name: output-message
       image: bash
@@ -23,5 +21,4 @@ spec:
       image: bitnami/kubectl
       script: |
         #!/usr/bin/env sh
-        name=`basename $(inputs.params.branch)`
-        kubectl apply -k /workspace/git-source/overlays
+        kubectl apply -k /workspace/git-source/env/overlays
