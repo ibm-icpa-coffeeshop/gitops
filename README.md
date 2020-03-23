@@ -91,8 +91,7 @@ This GitOps project assumes that the following already exists in your deployment
 
 ### GitOps with Kustomize
 
-* `cd overlays`
-* `kubectl apply -k .`
+* `kubectl apply -k env/overlays`
 
 ### GitOps with Tekton
 
