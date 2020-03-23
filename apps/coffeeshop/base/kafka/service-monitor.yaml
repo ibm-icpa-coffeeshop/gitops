@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: kafka-service-monitor
-  namespace: coffeeshop-monitoring
+  namespace: coffeeshop
   labels:
     app: strimzi
 spec:
