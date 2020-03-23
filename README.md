@@ -94,6 +94,10 @@ This GitOps project assumes that the following already exists in your deployment
 * `cd overlays`
 * `kubectl apply -k .`
 
+### GitOps with Tekton
+
+See the [pipeline repo](https://github.ibm.com/appsody-coffeeshop/pipeline)
+
 ### GitOps with ArgoCD
 
 **Installing ArgoCD**
