@@ -1,0 +1,32 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: run-integration-tests
+  namespace: coffeeshop-pipelines
+spec:
+  inputs:
+    params:
+      - name: ns
+        type: string
+        description: Namespace the application will be deployed into
+  steps:
+    - name: get-coffeeshop-host
+      image: bitnami/kubectl
+      script: |
+        #!/usr/bin/env sh
+
+        kubectl get route coffeeshop-ui -n $(inputs.params.ns) -o=jsonpath='{.spec.host}' > /workspace/host
+    - name: run-tests
+      securityContext:
+        privileged: true
+      image: matthewpwilson/coffeeshop-integration-tests:latest
+      script: |
+        #!/usr/bin/env sh
+        export COFFEESHOP_URI=http://`cat /workspace/host`
+        echo $COFFEESHOP_URI
+        cd /project
+        mvn clean verify
+
+
+
+

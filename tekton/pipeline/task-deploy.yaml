@@ -10,6 +10,7 @@ spec:
         type: git
     params:
       - name: message
+        type: string
         description: The message that will be echoed.
   steps:
     - name: output-message

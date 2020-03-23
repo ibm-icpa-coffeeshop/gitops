@@ -166,6 +166,7 @@ The following guide shows how to create a SSH key for you GitHub Account - note 
    * `kubectl apply -f tekton/pipeline/git-secrets.yaml`
    * `kubectl apply -f tekton/pipeline/pipeline-clusterroles.yaml`
    * `kubectl apply -f tekton/pipeline/task-deploy.yaml`
+   * `kubectl apply -f tekton/pipeline/task-tests.yaml`
    * `kubectl apply -f tekton/pipeline/pipeline-resources.yaml`
    * `kubectl apply -f tekton/pipeline/pipeline-deploy.yaml`
 1. Now you can manually run the pipeline which will deploy your resources. (Currently you will also need to have deployed `tekton/triggers/git-secrets` otherwise the pipeline will fail)
