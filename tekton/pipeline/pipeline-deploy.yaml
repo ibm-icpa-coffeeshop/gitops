@@ -9,8 +9,10 @@ spec:
       type: git
   params:
     - name: message
+      type: string
       default: Local deployment pipeline has started
     - name: ns
+      type: string
       default: coffeeshop
   tasks:
     - name: deploy-coffeeshop-demo
