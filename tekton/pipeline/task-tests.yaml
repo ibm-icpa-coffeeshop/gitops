@@ -18,7 +18,7 @@ spec:
     - name: run-tests
       securityContext:
         privileged: true
-      image: matthewpwilson/coffeeshop-integration-tests:fri2
+      image: matthewpwilson/coffeeshop-integration-tests:latest
       script: |
         #!/usr/bin/env sh
         export COFFEESHOP_URI=http://`cat /workspace/host`
