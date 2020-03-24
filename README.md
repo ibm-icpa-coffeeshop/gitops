@@ -58,13 +58,10 @@ See the [monitoring repo](https://github.ibm.com/appsody-coffeeshop/gitops-monit
 ### GitOps with Kustomize
 
 * `kubectl apply -k env/overlays`
-<<<<<<< HEAD
-=======
 
 ### GitOps with Tekton
 
 See the [pipeline repo](https://github.ibm.com/appsody-coffeeshop/pipeline)
->>>>>>> master
 
 ### GitOps with ArgoCD
 
