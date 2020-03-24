@@ -26,8 +26,7 @@ This GitOps project assumes that the following already exists in your deployment
 
 4. The Kafka Cluster
 
-* `cd coffeeshop/base`
-* `kubectl apply -f kafka.yaml`
+* `kubectl apply -f apps/coffeeshop/base/kafka/kafka.yaml`
 
 5. The Service Binding Operator
 
@@ -58,8 +57,7 @@ See the [monitoring repo](https://github.ibm.com/appsody-coffeeshop/gitops-monit
 
 ### GitOps with Kustomize
 
-* `cd overlays`
-* `kubectl apply -k .`
+* `kubectl apply -k env/overlays`
 
 ### GitOps with ArgoCD
 

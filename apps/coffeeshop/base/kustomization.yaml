@@ -6,3 +6,4 @@ bases:
   - ../../../services/barista-kafka/overlays
   - ../../../services/coffeeshop-ui/overlays
   - ../../../services/barista-http/overlays
+  - ./kafka
