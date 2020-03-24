@@ -53,7 +53,7 @@ This GitOps project assumes that the following already exists in your deployment
 
 6. Monitoring
 
-See the [monitoring repo](https://github.ibm.com/appsody-coffeeshop/gitops-monitoring)
+See the [monitoring repo](https://github.ibm.com/appsody-coffeeshop/gitops-infrastructure)
 
 ### GitOps with Kustomize
 
