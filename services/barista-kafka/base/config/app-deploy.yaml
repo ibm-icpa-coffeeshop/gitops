@@ -9,7 +9,7 @@ metadata:
     commit.image.appsody.dev/message: 'Merge pull request #2 from appsody-coffeeshop/update-deploy'
     graalvm-archive-filename: graalvm-ce-linux-amd64-19.2.1.tar.gz
     graalvm-archive-url: https://github.com/oracle/graal/releases/download/vm-19.2.1/graalvm-ce-linux-amd64-19.2.1.tar.gz
-    image.opencontainers.org/created: "2020-03-05T09:45:56Z"
+    image.opencontainers.org/created: "2020-03-25T10:32:15Z"
     image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/barista-kafka
     image.opencontainers.org/revision: 653dcfc0bfc06c0fbac57f0347adf9ca587f712c-modified
     image.opencontainers.org/source: https://github.ibm.com/appsody-coffeeshop/barista-kafka/tree/master
@@ -39,7 +39,7 @@ metadata:
     stack.appsody.dev/version: 0.2.3
   name: barista-kafka
 spec:
-  applicationImage: dev.local/barista-kafka
+  applicationImage: ianpartridge/barista-kafka:latest
   createKnativeService: false
   expose: true
   service:
