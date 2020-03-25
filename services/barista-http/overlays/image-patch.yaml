@@ -1,7 +1,0 @@
-apiVersion: appsody.dev/v1beta1
-kind: AppsodyApplication
-metadata:
-  name: barista-http
-  namespace: default
-spec:
-  applicationImage: ianpartridge/barista-http:latest
