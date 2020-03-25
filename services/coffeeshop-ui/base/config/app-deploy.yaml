@@ -21,7 +21,7 @@ metadata:
       technologies through subscriptions for Red Hat products. This image is maintained
       by Red Hat and updated regularly.
     distribution-scope: public
-    image.opencontainers.org/created: "2020-03-25T13:07:30Z"
+    image.opencontainers.org/created: "2020-03-25T10:23:28Z"
     image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui
     image.opencontainers.org/revision: b88569e22d42f7935bf75c9cd53f3bbb63f4fa6e-modified
     image.opencontainers.org/source: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui/tree/master
@@ -66,7 +66,7 @@ metadata:
     stack.appsody.dev/version: 0.2.3
   name: coffeeshop-ui
 spec:
-  applicationImage: matthewpwilson/coffeeshop-ui:0.4
+  applicationImage: ianpartridge/coffeeshop-ui:latest
   createKnativeService: false
   expose: true
   livenessProbe:
