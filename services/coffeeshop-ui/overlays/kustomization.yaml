@@ -1,7 +1,6 @@
 bases:
 - ../base
 patches:
-  - image-patch.yaml
   - consume-patch.yaml
   - barista-http-patch.yaml
   - kafka-patch.yaml

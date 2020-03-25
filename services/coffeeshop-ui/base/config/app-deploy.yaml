@@ -9,18 +9,19 @@ metadata:
     commit.image.appsody.dev/committer: GitHub Enterprise <noreply@github.ibm.com>
     commit.image.appsody.dev/date: Tue Feb 25 13:13:29 2020 +0000
     commit.image.appsody.dev/message: 'Merge pull request #4 from appsody-coffeeshop/update-deploy'
-    commit.stack.appsody.dev/author: Scott Kurz <skurz@us.ibm.com>
+    commit.stack.appsody.dev/author: Mike Andrasak <andrasak@us.ibm.com>
     commit.stack.appsody.dev/committer: GitHub <noreply@github.com>
     commit.stack.appsody.dev/contextDir: /incubator/java-openliberty
-    commit.stack.appsody.dev/date: Mon Feb 24 15:33:55 2020 +0000
-    commit.stack.appsody.dev/message: Perform mvn install as java_user (#686)
+    commit.stack.appsody.dev/date: Tue Mar 10 16:23:57 2020 +0000
+    commit.stack.appsody.dev/message: java-openliberty:keystore.xml perms not set
+      correctly (#706)
     description: The Universal Base Image is designed and engineered to be the base
       layer for all of your containerized applications, middleware and utilities.
       This base image is freely redistributable, but Red Hat only supports Red Hat
       technologies through subscriptions for Red Hat products. This image is maintained
       by Red Hat and updated regularly.
     distribution-scope: public
-    image.opencontainers.org/created: "2020-03-05T10:04:31Z"
+    image.opencontainers.org/created: "2020-03-25T08:17:21Z"
     image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui
     image.opencontainers.org/revision: b88569e22d42f7935bf75c9cd53f3bbb63f4fa6e-modified
     image.opencontainers.org/source: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui/tree/master
@@ -42,13 +43,13 @@ metadata:
     stack.appsody.dev/authors: Mike Andrasak <andrasak@us.ibm.com>, Andy Mauer <ajmauer@us.ibm.com>,
       Scott Kurz <skurz@us.ibm.com>, Adam Wisniewski <awisniew@us.ibm.com>
     stack.appsody.dev/configured: docker.io/appsody/java-openliberty:0.2
-    stack.appsody.dev/created: "2020-02-24T15:35:57Z"
+    stack.appsody.dev/created: "2020-03-10T16:41:42Z"
     stack.appsody.dev/description: Open Liberty & OpenJ9 using Maven
     stack.appsody.dev/documentation: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/README.md
     stack.appsody.dev/licenses: Apache-2.0
-    stack.appsody.dev/revision: 6ceac5fc3b5421cba0ca7b6a52db3e7008ff15f6
+    stack.appsody.dev/revision: 90285f36357fa25db53d98cf1dcb6683a66266ec
     stack.appsody.dev/source: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/image
-    stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.2.2
+    stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.2.3
     stack.appsody.dev/title: Open Liberty
     stack.appsody.dev/url: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty
     summary: Provides the latest release of Red Hat Universal Base Image 8.
@@ -62,10 +63,10 @@ metadata:
     app.kubernetes.io/part-of: coffeeshop
     image.opencontainers.org/title: coffeeshop-ui
     stack.appsody.dev/id: java-openliberty
-    stack.appsody.dev/version: 0.2.2
+    stack.appsody.dev/version: 0.2.3
   name: coffeeshop-ui
 spec:
-  applicationImage: dev.local/coffeeshop-ui
+  applicationImage: matthewpwilson/coffeeshop-service:0.3
   createKnativeService: false
   expose: true
   livenessProbe:
@@ -86,11 +87,11 @@ spec:
   service:
     annotations:
       prometheus.io/scrape: "true"
+    consumes:
+    - category: openapi
+      name: barista-http
+      namespace: default
     port: 9080
     type: NodePort
-    consumes:
-      - category: openapi
-        name: barista-http
-        namespace: default
   stack: java-openliberty
   version: 1.0.0
