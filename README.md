@@ -51,7 +51,7 @@ This GitOps project assumes that the following already exists in your deployment
 * Follow the same instructions for installing the Strimzi Operator described above except the following:
     * Type **Service Binding Operator** into the Filter by keyword box.
 
-6. Monitoring
+### GitOps with Monitoring
 
 See the [monitoring repo](https://github.ibm.com/appsody-coffeeshop/gitops-infrastructure)
 
