@@ -3,10 +3,9 @@ kind: GrafanaDashboard
 metadata:
   labels:
     app: grafana
-  name: coffeeshop-metrics-dashboard
-  namespace: coffeeshop-monitoring
+  name: kafka-dashboard
 spec:
-  name: coffeeshop-metrics-dashboard.json
+  name: kafka-dashboard.json
   json: |
     {
       "__inputs": [
@@ -144,6 +143,6 @@ spec:
           "1d"
         ]
       },
-      "title": "Coffeeshop-Metrics-Dashboard",
-      "uid": "Coffeeshop-Metrics-Dashboard"
+      "title": "Kafka Dashboard",
+      "uid": "Coffeeshop-Kafka-Dashboard"
     }

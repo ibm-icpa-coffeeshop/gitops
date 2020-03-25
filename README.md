@@ -26,8 +26,7 @@ This GitOps project assumes that the following already exists in your deployment
 
 4. The Kafka Cluster
 
-* `cd coffeeshop/base`
-* `kubectl apply -f kafka.yaml`
+* `kubectl apply -f apps/coffeeshop/base/kafka/kafka.yaml`
 
 5. The Service Binding Operator
 
@@ -52,42 +51,9 @@ This GitOps project assumes that the following already exists in your deployment
 * Follow the same instructions for installing the Strimzi Operator described above except the following:
     * Type **Service Binding Operator** into the Filter by keyword box.
 
-6. Prometheus Operator (Optional)
+### GitOps with Monitoring
 
-* `kubectl create ns coffeeshop-monitoring`
-* Navigate in the web console to the **Operators** → **OperatorHub** page.
-* Type **Prometheus** into the **Filter by keyword** box.
-* Select the Operator and click **Install**.
-* On the **Create Operator Subscription** page:
-    * Select **A specific namespace on the cluster** and select the `coffeeshop-monitoring` namespace
-    * Select **Automatic** or **Manual** approval strategy. If you choose Automatic, Operator Lifecycle Manager (OLM) automatically upgrades the operator as a new version is available.
-* Click **Subscribe**.
-* In the `coffeeshop/base/metrics/prometheus-config-secret.yaml` file you will need to replace the value of `prometheus-additional-config.yaml` with the base64 encoded contents of the file with the same name. Use the following command to encode the file contents to replace the above values with:
-   * `cat coffeeshop/base/metrics/prometheus-additional-config.yaml | base64 -w 0 > base64.txt`
-   * The base64 encoded contents can then be found in the `base64.txt` file.
-* `cd coffeeshop/base/metrics`
-* `kubectl apply -f prometheus-config-secret.yaml`
-* `kubectl apply -f prometheus.yaml`
-* `kubectl apply -f prometheus-clusterroles.yaml`
-* `kubectl apply -f strimzi-service-monitor.yaml`
-
-7. Grafana Operator (Optional)
-
-* Navigate in the web console to the **Operators** → **OperatorHub** page.
-* Type **Grafana** into the **Filter by keyword** box.
-* Select the Operator and click **Install**.
-* On the **Create Operator Subscription** page:
-    * Select **A specific namespace on the cluster** and select the `coffeeshop-monitoring` namespace
-    * Select **Automatic** or **Manual** approval strategy. If you choose Automatic, Operator Lifecycle Manager (OLM) automatically upgrades the operator as a new version is available.
-* Click **Subscribe**.
-* `cd coffeeshop/base/metrics`
-* `kubectl apply -f grafana.yaml`
-* `kubectl apply -f grafana-dashboard.yaml`
-* You can now view the dashboard.
-   * On OpenShift go to 'Networking -> Routes' and select the `coffeeshop-monitoring` project.
-   * There should be a `grafana-route`. Select the link to the dashboard location.
-   * You should now see the 'Home Dashboard'.
-   * On the top left of the screen, select the dashboard dropdown where it currently displays 'Home' and select `Coffeeshop-Metrics-Dashboard` to navigate to the coffeeshop scenario one.
+See the [monitoring repo](https://github.ibm.com/appsody-coffeeshop/gitops-infrastructure)
 
 ### GitOps with Kustomize
 
