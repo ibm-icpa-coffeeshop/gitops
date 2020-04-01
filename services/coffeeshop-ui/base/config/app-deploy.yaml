@@ -12,16 +12,16 @@ metadata:
     commit.stack.appsody.dev/author: Adam Wisniewski <awisniew@us.ibm.com>
     commit.stack.appsody.dev/committer: GitHub <noreply@github.com>
     commit.stack.appsody.dev/contextDir: /incubator/java-openliberty
-    commit.stack.appsody.dev/date: Fri Mar 27 13:11:35 2020 +0000
-    commit.stack.appsody.dev/message: 'java-openliberty: add stack template variables
-      (#729)'
+    commit.stack.appsody.dev/date: Tue Mar 31 13:41:02 2020 +0100
+    commit.stack.appsody.dev/message: 'java-openliberty: add serverStartTimeout config
+      to stack pom (#732)'
     description: The Universal Base Image is designed and engineered to be the base
       layer for all of your containerized applications, middleware and utilities.
       This base image is freely redistributable, but Red Hat only supports Red Hat
       technologies through subscriptions for Red Hat products. This image is maintained
       by Red Hat and updated regularly.
     distribution-scope: public
-    image.opencontainers.org/created: "2020-03-30T16:49:57Z"
+    image.opencontainers.org/created: "2020-04-01T13:54:47Z"
     image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui
     image.opencontainers.org/revision: b88569e22d42f7935bf75c9cd53f3bbb63f4fa6e-modified
     image.opencontainers.org/source: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui/tree/master
@@ -43,13 +43,13 @@ metadata:
     stack.appsody.dev/authors: Mike Andrasak <andrasak@us.ibm.com>, Andy Mauer <ajmauer@us.ibm.com>,
       Scott Kurz <skurz@us.ibm.com>, Adam Wisniewski <awisniew@us.ibm.com>
     stack.appsody.dev/configured: docker.io/appsody/java-openliberty:0.2
-    stack.appsody.dev/created: "2020-03-27T13:14:25Z"
+    stack.appsody.dev/created: "2020-03-31T12:43:54Z"
     stack.appsody.dev/description: Open Liberty & OpenJ9 using Maven
     stack.appsody.dev/documentation: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/README.md
     stack.appsody.dev/licenses: Apache-2.0
-    stack.appsody.dev/revision: a3be05c738df79cd99138096c4a21d27778bb50b
+    stack.appsody.dev/revision: dc507ec2d26fc95924da0fff0d137d85986b94bd
     stack.appsody.dev/source: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/image
-    stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.2.4
+    stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.2.5
     stack.appsody.dev/title: Open Liberty
     stack.appsody.dev/url: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty
     summary: Provides the latest release of Red Hat Universal Base Image 8.
@@ -63,7 +63,7 @@ metadata:
     app.kubernetes.io/part-of: coffeeshop
     image.opencontainers.org/title: coffeeshop-ui
     stack.appsody.dev/id: java-openliberty
-    stack.appsody.dev/version: 0.2.4
+    stack.appsody.dev/version: 0.2.5
   name: coffeeshop-ui
 spec:
   applicationImage: index.docker.io/ianpartridge/coffeeshop-ui
