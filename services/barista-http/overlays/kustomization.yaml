@@ -1,4 +1,2 @@
 bases:
 - ../base
-patches:
-  - image-patch.yaml
