@@ -5,10 +5,11 @@ metadata:
     architecture: x86_64
     authoritative-source-url: registry.access.redhat.com
     build-date: 2019-10-29T16:44:53.794580
-    commit.image.appsody.dev/author: Matthew P Wilson <matthew.wilson@uk.ibm.com>
-    commit.image.appsody.dev/committer: GitHub Enterprise <noreply@github.ibm.com>
-    commit.image.appsody.dev/date: Tue Feb 25 13:13:29 2020 +0000
-    commit.image.appsody.dev/message: 'Merge pull request #4 from appsody-coffeeshop/update-deploy'
+    commit.image.appsody.dev/author: Matthew Wilson <matthew.wilson@uk.ibm.com>
+    commit.image.appsody.dev/committer: Matthew Wilson <matthew.wilson@uk.ibm.com>
+    commit.image.appsody.dev/contextDir: C:\Users\SandraHayward\Documents\Code\Appsody-Coffeeshop\coffeeshop-ui
+    commit.image.appsody.dev/date: Wed Apr 1 14:18:44 2020 +0100
+    commit.image.appsody.dev/message: Updtae app-deploy.yaml
     commit.stack.appsody.dev/author: Adam Wisniewski <awisniew@us.ibm.com>
     commit.stack.appsody.dev/committer: GitHub <noreply@github.com>
     commit.stack.appsody.dev/contextDir: /incubator/java-openliberty
@@ -21,47 +22,62 @@ metadata:
       technologies through subscriptions for Red Hat products. This image is maintained
       by Red Hat and updated regularly.
     distribution-scope: public
-    image.opencontainers.org/created: "2020-04-02T08:36:55Z"
+    image.opencontainers.org/created: "2020-04-08T09:37:41+01:00"
     image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui
-    image.opencontainers.org/revision: 979de020cf5cf69aa37f63cbd7c25f752739872b
+    image.opencontainers.org/revision: cd57f7eef0e6c44e4a1fabc9654b5d9861597da7
     image.opencontainers.org/source: |
-      https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui/tree/master
+      https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui/tree/add-monitoring
     image.opencontainers.org/url: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui
+    k8s.io/description: The Universal Base Image is designed and engineered to be
+      the base layer for all of your containerized applications, middleware and utilities.
+      This base image is freely redistributable, but Red Hat only supports Red Hat
+      technologies through subscriptions for Red Hat products. This image is maintained
+      by Red Hat and updated regularly.
+    k8s.io/display-name: Red Hat Universal Base Image 8
+    maintainer: Red Hat, Inc.
+    name: ubi8
+    openshift.io/expose-services: ""
+    openshift.io/tags: base rhel8
+    redhat.com/build-host: cpt-1002.osbs.prod.upshift.rdu2.redhat.com
+    redhat.com/component: ubi8-container
+    redhat.com/license_terms: https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI
+    release: "277"
     stack.appsody.dev/authors: Mike Andrasak <andrasak@us.ibm.com>, Andy Mauer <ajmauer@us.ibm.com>,
       Scott Kurz <skurz@us.ibm.com>, Adam Wisniewski <awisniew@us.ibm.com>
     stack.appsody.dev/configured: docker.io/appsody/java-openliberty:0.2
     stack.appsody.dev/created: "2020-03-31T12:43:54Z"
     stack.appsody.dev/description: Open Liberty & OpenJ9 using Maven
+    stack.appsody.dev/documentation: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/README.md
     stack.appsody.dev/licenses: Apache-2.0
     stack.appsody.dev/revision: dc507ec2d26fc95924da0fff0d137d85986b94bd
     stack.appsody.dev/source: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/image
     stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.2.5
     stack.appsody.dev/title: Open Liberty
+    stack.appsody.dev/url: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty
+    summary: Provides the latest release of Red Hat Universal Base Image 8.
+    url: https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/images/8.1-277
+    vcs-ref: c42933bcdbf9f1c232e981a5e40de257c3534c8e
+    vcs-type: git
+    vendor: Red Hat, Inc.
+    version: "8.1"
   creationTimestamp: null
   labels:
+    app.kubernetes.io/name: coffeeshop-ui
+    app.kubernetes.io/part-of: coffeeshop
     image.opencontainers.org/title: coffeeshop-ui
     stack.appsody.dev/id: java-openliberty
     stack.appsody.dev/version: 0.2.5
   name: coffeeshop-ui
-  namespace: default
 spec:
-  applicationImage: index.docker.io/matthewpwilson/coffeeshop-ui:319bc43f279dfd9ada0a3731d242b9509529d0fc
+  applicationImage: dev.local/coffeeshop-ui
   createKnativeService: false
-  env:
-  - name: MP_MESSAGING_CONNECTOR_LIBERTY_KAFKA_BOOTSTRAP_SERVERS
-    value: my-cluster-kafka-bootstrap.kafka.svc:9092
-  - name: COM_IBM_RUNTIMES_EVENTS_COFFEESHOP_HTTP_BARISTASERVICE_MP_REST_URL
-    valueFrom:
-      secretKeyRef:
-        key: url
-        name: default-barista-http
   expose: true
   livenessProbe:
     failureThreshold: 12
     httpGet:
       path: /health/live
       port: 9080
-    initialDelaySeconds: 10
+    initialDelaySeconds: 5
     periodSeconds: 2
   monitoring:
     endpoints:
@@ -76,13 +92,13 @@ spec:
       tlsConfig:
         insecureSkipVerify: true
     labels:
-      k8s-app: ""
+      app.kubernetes.io/name: coffeeshop-ui
   readinessProbe:
     failureThreshold: 12
     httpGet:
       path: /health/ready
       port: 9080
-    initialDelaySeconds: 10
+    initialDelaySeconds: 5
     periodSeconds: 2
     timeoutSeconds: 1
   service:
@@ -96,4 +112,3 @@ spec:
     type: NodePort
   stack: java-openliberty
   version: 1.0.0
-status: {}
