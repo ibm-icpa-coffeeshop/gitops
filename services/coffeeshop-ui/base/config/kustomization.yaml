@@ -1,4 +1,5 @@
 resources:
   - app-deploy.yaml
   - service-binding-request.yaml
+  - service-monitor.yaml
   - auth-secret.yaml

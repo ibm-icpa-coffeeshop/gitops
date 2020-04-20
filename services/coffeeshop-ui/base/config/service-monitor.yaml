@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: appsody-service-monitor
+  labels:
+    app: prometheus
+spec:
+  namespaceSelector:
+    matchNames:
+    - coffeeshop
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: coffeeshop-ui
+  endpoints:
+  - basicAuth:
+      password:
+        key: password
+        name: metrics-liberty
+      username:
+        key: username
+        name: metrics-liberty
+    port: '9080'
+    path: '/metrics/'
+    tlsConfig:
+      insecureSkipVerify: true
