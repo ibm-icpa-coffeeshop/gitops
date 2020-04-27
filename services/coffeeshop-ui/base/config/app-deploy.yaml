@@ -91,7 +91,6 @@ spec:
     consumes:
     - category: openapi
       name: barista-http
-      namespace: default
     port: 9080
     type: NodePort
   stack: java-openliberty
