@@ -10,7 +10,7 @@ This GitOps project assumes that the following already exists in your deployment
 
 ### GitOps with Kustomize
 
-* `kubectl apply -k env/overlays`
+* `kubectl apply -k env`
 
 ### GitOps with Monitoring
 

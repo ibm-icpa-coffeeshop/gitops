@@ -3,7 +3,7 @@ resources:
 #- kafka.yaml
 
 bases:
-  - ../../../services/barista-kafka/overlays
-  - ../../../services/coffeeshop-ui/overlays
-  - ../../../services/barista-http/overlays
+  - ../../../services/barista-kafka
+  - ../../../services/coffeeshop-ui
+  - ../../../services/barista-http
   - ./kafka
