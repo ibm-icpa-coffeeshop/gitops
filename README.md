@@ -5,7 +5,7 @@
 This GitOps project assumes that the following already exists in your deployment **OpenShift** cluster:
 
 * The base infrastructure found on the [infrastructure repo](https://github.ibm.com/appsody-coffeeshop/gitops-infrastructure).
-* `kubectl apply -f apps/coffeeshop/base/namespace.yaml`
+* `kubectl apply -f env/base/namespace.yaml`
 * `kubectl apply -f apps/coffeeshop/base/kafka/kafka.yaml`
 
 ### GitOps with Kustomize
