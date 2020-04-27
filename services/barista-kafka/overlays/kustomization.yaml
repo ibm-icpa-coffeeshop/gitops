@@ -1,4 +1,2 @@
 bases:
 - ../base
-patches:
-  - kafka-patch.yaml
