@@ -2,4 +2,3 @@ bases:
 - ../base
 patches:
   - barista-http-patch.yaml
-  - kafka-patch.yaml

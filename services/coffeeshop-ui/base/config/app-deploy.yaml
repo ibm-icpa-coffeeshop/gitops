@@ -93,5 +93,8 @@ spec:
       name: barista-http
     port: 9080
     type: NodePort
+  envFrom: 
+  - secretRef:
+      name: coffeeshop-ui-kafka  
   stack: java-openliberty
   version: 1.0.0
