@@ -1,8 +1,0 @@
-apiVersion: appsody.dev/v1beta1
-kind: AppsodyApplication
-metadata:
-  name: coffeeshop-ui
-spec:
-  envFrom: 
-    - secretRef:
-        name: coffeeshop-ui-kafka
