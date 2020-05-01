@@ -67,7 +67,7 @@ metadata:
     stack.appsody.dev/version: 0.2.8
   name: coffeeshop-ui
 spec:
-  applicationImage: index.docker.io/tnixa/coffeeshop-ui:f9aad565f51bc69d323105c7c65b6a0774291a59
+  applicationImage: ianpartridge/coffeeshop-ui:latest
   createKnativeService: false
   expose: true
   livenessProbe:
