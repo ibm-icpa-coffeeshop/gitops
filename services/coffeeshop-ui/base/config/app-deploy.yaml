@@ -17,7 +17,7 @@ metadata:
     description: Eclipse MicroProfile & Jakarta EE on Open Liberty & OpenJ9 using
       Maven
     distribution-scope: public
-    image.opencontainers.org/created: "2020-05-04T11:59:47Z"
+    image.opencontainers.org/created: "2020-05-04T16:53:41Z"
     image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui
     image.opencontainers.org/revision: b88569e22d42f7935bf75c9cd53f3bbb63f4fa6e-modified
     image.opencontainers.org/source: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui/tree/master
@@ -63,11 +63,10 @@ metadata:
     stack.appsody.dev/version: 0.2.11
   name: coffeeshop-ui
 spec:
-  applicationImage: index.docker.io/ianpartridge/coffeeshop-ui:2ec3c58809346e9d58c9e432fa8241fb0bca3005
+  applicationImage: index.docker.io/ianpartridge/coffeeshop-ui:38d51131f0d7d90db67206faa1854f469117dab7
+  bindings:
+    resourceRef: coffeeshop-ui-kafka
   createKnativeService: false
-  envFrom:
-  - secretRef:
-      name: coffeeshop-ui-kafka
   expose: true
   livenessProbe:
     failureThreshold: 12
