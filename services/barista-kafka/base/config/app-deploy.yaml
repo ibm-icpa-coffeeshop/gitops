@@ -45,8 +45,5 @@ spec:
   service:
     port: 8080
     type: ClusterIP
-  envFrom:
-  - secretRef:
-      name: barista-kafka
   stack: quarkus
   version: 1.0.0
