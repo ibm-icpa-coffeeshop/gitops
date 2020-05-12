@@ -80,20 +80,20 @@ spec:
       port: 9080
     initialDelaySeconds: 5
     periodSeconds: 2
-  # monitoring:
-  #   endpoints:
-  #   - basicAuth:
-  #       password:
-  #         key: password
-  #         name: metrics-liberty
-  #       username:
-  #         key: username
-  #         name: metrics-liberty
-  #     interval: 10s
-  #     tlsConfig:
-  #       insecureSkipVerify: true
-  #   labels:
-  #     app.kubernetes.io/instance: coffeeshop-ui
+  monitoring:
+    endpoints:
+    - basicAuth:
+        password:
+          key: password
+          name: metrics-liberty
+        username:
+          key: username
+          name: metrics-liberty
+      interval: 10s
+      tlsConfig:
+        insecureSkipVerify: true
+    labels:
+      app.kubernetes.io/instance: coffeeshop-ui
   readinessProbe:
     failureThreshold: 12
     httpGet:
