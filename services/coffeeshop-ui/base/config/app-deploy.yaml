@@ -70,7 +70,7 @@ metadata:
     monitor.appsody.dev/enabled: 'true'
   name: coffeeshop-ui
 spec:
-  applicationImage: default-route-openshift-image-registry.apps.aliases.os.fyre.ibm.com/coffeeshop-ui
+  applicationImage: default-route-openshift-image-registry.apps.alienee.os.fyre.ibm.com/coffeeshop-ui
   createKnativeService: false
   expose: true
   livenessProbe:
