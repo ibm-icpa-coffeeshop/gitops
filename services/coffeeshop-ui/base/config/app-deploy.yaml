@@ -5,24 +5,23 @@ metadata:
     architecture: x86_64
     authoritative-source-url: registry.access.redhat.com
     build-date: 2019-10-29T16:44:53.794580
-    commit.image.appsody.dev/author: Matthew Wilson <matthew.wilson@uk.ibm.com>
-    commit.image.appsody.dev/committer: Matthew Wilson <matthew.wilson@uk.ibm.com>
-    commit.image.appsody.dev/contextDir: C:\Users\SandraHayward\Documents\Code\Appsody-Coffeeshop\coffeeshop-ui
-    commit.image.appsody.dev/date: Wed Apr 1 14:18:44 2020 +0100
-    commit.image.appsody.dev/message: Updtae app-deploy.yaml
-    commit.stack.appsody.dev/author: Adam Wisniewski <awisniew@us.ibm.com>
+    commit.image.appsody.dev/author: Matthew P Wilson <matthew.wilson@uk.ibm.com>
+    commit.image.appsody.dev/committer: GitHub Enterprise <noreply@github.ibm.com>
+    commit.image.appsody.dev/date: Tue Feb 25 13:13:29 2020 +0000
+    commit.image.appsody.dev/message: 'Merge pull request #4 from appsody-coffeeshop/update-deploy'
+    commit.stack.appsody.dev/author: Mike Andrasak <andrasak@us.ibm.com>
     commit.stack.appsody.dev/committer: GitHub <noreply@github.com>
     commit.stack.appsody.dev/contextDir: /incubator/java-openliberty
-    commit.stack.appsody.dev/date: Tue Mar 31 13:41:02 2020 +0100
-    commit.stack.appsody.dev/message: 'java-openliberty: add serverStartTimeout config
-      to stack pom (#732)'
+    commit.stack.appsody.dev/date: Wed Apr 15 12:52:01 2020 +0100
+    commit.stack.appsody.dev/message: 'java-openliberty: Notify of the removal of
+      quick-start-security.xml (#759)'
     description: The Universal Base Image is designed and engineered to be the base
       layer for all of your containerized applications, middleware and utilities.
       This base image is freely redistributable, but Red Hat only supports Red Hat
       technologies through subscriptions for Red Hat products. This image is maintained
       by Red Hat and updated regularly.
     distribution-scope: public
-    image.opencontainers.org/created: "2020-04-08T09:37:41+01:00"
+    image.opencontainers.org/created: "2020-04-23T18:25:33Z"
     image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui
     image.opencontainers.org/revision: cd57f7eef0e6c44e4a1fabc9654b5d9861597da7
     image.opencontainers.org/source: |
@@ -45,13 +44,14 @@ metadata:
     stack.appsody.dev/authors: Mike Andrasak <andrasak@us.ibm.com>, Andy Mauer <ajmauer@us.ibm.com>,
       Scott Kurz <skurz@us.ibm.com>, Adam Wisniewski <awisniew@us.ibm.com>
     stack.appsody.dev/configured: docker.io/appsody/java-openliberty:0.2
-    stack.appsody.dev/created: "2020-03-31T12:43:54Z"
-    stack.appsody.dev/description: Open Liberty & OpenJ9 using Maven
+    stack.appsody.dev/created: "2020-04-15T11:54:37Z"
+    stack.appsody.dev/description: Eclipse MicroProfile & Jakarta EE on Open Liberty
+      & OpenJ9 using Maven
     stack.appsody.dev/documentation: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/README.md
     stack.appsody.dev/licenses: Apache-2.0
-    stack.appsody.dev/revision: dc507ec2d26fc95924da0fff0d137d85986b94bd
+    stack.appsody.dev/revision: 1ed4340f1ee1d76a908dcb759e2c1d02e50b747c
     stack.appsody.dev/source: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/image
-    stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.2.5
+    stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.2.8
     stack.appsody.dev/title: Open Liberty
     stack.appsody.dev/url: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty
     summary: Provides the latest release of Red Hat Universal Base Image 8.
@@ -66,11 +66,11 @@ metadata:
     app.kubernetes.io/part-of: coffeeshop
     image.opencontainers.org/title: coffeeshop-ui
     stack.appsody.dev/id: java-openliberty
-    stack.appsody.dev/version: 0.2.5
     monitor.appsody.dev/enabled: 'true'
+    stack.appsody.dev/version: 0.2.8
   name: coffeeshop-ui
 spec:
-  applicationImage: default-route-openshift-image-registry.apps.alienee.os.fyre.ibm.com/coffeeshop-ui
+  applicationImage: ianpartridge/coffeeshop-ui:latest
   createKnativeService: false
   expose: true
   livenessProbe:
@@ -108,8 +108,9 @@ spec:
     consumes:
     - category: openapi
       name: barista-http
-      namespace: default
     port: 9080
     type: NodePort
+  bindings:
+    resourceRef: coffeeshop-ui-kafka
   stack: java-openliberty
   version: 1.0.0
