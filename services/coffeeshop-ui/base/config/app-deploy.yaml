@@ -4,7 +4,7 @@ metadata:
   annotations:
     architecture: x86_64
     authoritative-source-url: registry.access.redhat.com
-    build-date: 2019-10-29T16:44:53.794580
+    build-date: 2020-03-31T14:54:13.907559
     commit.image.appsody.dev/author: Matthew P Wilson <matthew.wilson@uk.ibm.com>
     commit.image.appsody.dev/committer: GitHub Enterprise <noreply@github.ibm.com>
     commit.image.appsody.dev/date: Tue Feb 25 13:13:29 2020 +0000
@@ -12,16 +12,12 @@ metadata:
     commit.stack.appsody.dev/author: Mike Andrasak <andrasak@us.ibm.com>
     commit.stack.appsody.dev/committer: GitHub <noreply@github.com>
     commit.stack.appsody.dev/contextDir: /incubator/java-openliberty
-    commit.stack.appsody.dev/date: Wed Apr 15 12:52:01 2020 +0100
-    commit.stack.appsody.dev/message: 'java-openliberty: Notify of the removal of
-      quick-start-security.xml (#759)'
-    description: The Universal Base Image is designed and engineered to be the base
-      layer for all of your containerized applications, middleware and utilities.
-      This base image is freely redistributable, but Red Hat only supports Red Hat
-      technologies through subscriptions for Red Hat products. This image is maintained
-      by Red Hat and updated regularly.
+    commit.stack.appsody.dev/date: Fri May 1 12:33:54 2020 +0100
+    commit.stack.appsody.dev/message: 'Fixes #790 (#798)'
+    description: Eclipse MicroProfile & Jakarta EE on Open Liberty & OpenJ9 using
+      Maven
     distribution-scope: public
-    image.opencontainers.org/created: "2020-04-23T18:25:33Z"
+    image.opencontainers.org/created: "2020-05-04T16:53:41Z"
     image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui
     image.opencontainers.org/revision: cd57f7eef0e6c44e4a1fabc9654b5d9861597da7
     image.opencontainers.org/source: |
@@ -34,43 +30,45 @@ metadata:
       by Red Hat and updated regularly.
     k8s.io/display-name: Red Hat Universal Base Image 8
     maintainer: Red Hat, Inc.
-    name: ubi8
+    name: java-openliberty
     openshift.io/expose-services: ""
     openshift.io/tags: base rhel8
-    redhat.com/build-host: cpt-1002.osbs.prod.upshift.rdu2.redhat.com
+    redhat.com/build-host: cpt-1007.osbs.prod.upshift.rdu2.redhat.com
     redhat.com/component: ubi8-container
     redhat.com/license_terms: https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI
-    release: "277"
-    stack.appsody.dev/authors: Mike Andrasak <andrasak@us.ibm.com>, Andy Mauer <ajmauer@us.ibm.com>,
-      Scott Kurz <skurz@us.ibm.com>, Adam Wisniewski <awisniew@us.ibm.com>
+    release: "408"
+    stack.appsody.dev/authors: Mike Andrasak <uberskigeek>, Andy Mauer <ajm01>, Scott
+      Kurz <>, Adam Wisniewski <>
     stack.appsody.dev/configured: docker.io/appsody/java-openliberty:0.2
-    stack.appsody.dev/created: "2020-04-15T11:54:37Z"
+    stack.appsody.dev/created: "2020-05-01T11:39:42Z"
     stack.appsody.dev/description: Eclipse MicroProfile & Jakarta EE on Open Liberty
       & OpenJ9 using Maven
     stack.appsody.dev/documentation: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/README.md
     stack.appsody.dev/licenses: Apache-2.0
-    stack.appsody.dev/revision: 1ed4340f1ee1d76a908dcb759e2c1d02e50b747c
+    stack.appsody.dev/revision: e31befe61fb0dc22b07f7578aed141fec8daed9a
     stack.appsody.dev/source: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/image
-    stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.2.8
+    stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.2.11
     stack.appsody.dev/title: Open Liberty
     stack.appsody.dev/url: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty
-    summary: Provides the latest release of Red Hat Universal Base Image 8.
-    url: https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/images/8.1-277
-    vcs-ref: c42933bcdbf9f1c232e981a5e40de257c3534c8e
+    summary: Open Liberty
+    url: https://access.redhat.com/containers/#/registry.access.redhat.com/ubi8/images/8.1-408
+    vcs-ref: 26f36bfa3e3a04c8c866b250924c1aefc34f01c9
     vcs-type: git
-    vendor: Red Hat, Inc.
-    version: "8.1"
+    vendor: Open Liberty
+    version: 0.2.11
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: coffeeshop-ui
     app.kubernetes.io/part-of: coffeeshop
     image.opencontainers.org/title: coffeeshop-ui
     stack.appsody.dev/id: java-openliberty
+    stack.appsody.dev/version: 0.2.11
     monitor.appsody.dev/enabled: 'true'
-    stack.appsody.dev/version: 0.2.8
   name: coffeeshop-ui
 spec:
-  applicationImage: ianpartridge/coffeeshop-ui:latest
+  applicationImage: index.docker.io/ianpartridge/coffeeshop-ui:38d51131f0d7d90db67206faa1854f469117dab7
+  bindings:
+    resourceRef: coffeeshop-ui-kafka
   createKnativeService: false
   expose: true
   livenessProbe:
@@ -110,7 +108,5 @@ spec:
       name: barista-http
     port: 9080
     type: NodePort
-  bindings:
-    resourceRef: coffeeshop-ui-kafka
   stack: java-openliberty
   version: 1.0.0
