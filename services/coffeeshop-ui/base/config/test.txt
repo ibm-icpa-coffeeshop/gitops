@@ -1,1 +1,0 @@
-Testing promotion from config dir
