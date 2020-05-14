@@ -64,68 +64,103 @@ spec:
       "iteration": 1569353980677,
       "links": [],
       "panels": [
-        {
-          "type": "bargauge",
-          "title": "Consumer Lag",
-          "gridPos": {
-            "x": 0,
-            "y": 0,
-            "w": 12,
-            "h": 8
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Prometheus",
+        "description": "This panel displays the number of messages that are currently present in the queue with the shown topic name.",
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 4,
+        "legend": {
+          "alignAsTable": false,
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "dataLinks": []
+        },
+        "percentage": false,
+        "pluginVersion": "6.5.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "expr": "kafka_consumergroup_lag",
+            "format": "time_series",
+            "instant": false,
+            "intervalFactor": 1,
+            "legendFormat": "{{topic}}",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Consumer Lag",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "transparent": true,
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
           },
-          "id": 4,
-          "datasource": "Prometheus",
-          "targets": [
-            {
-              "refId": "A",
-              "expr": "kafka_consumergroup_lag",
-              "intervalFactor": 1,
-              "format": "time_series",
-              "legendFormat": "{{topic}}",
-              "instant": true
-            }
-          ],
-          "transparent": true,
-          "timeFrom": null,
-          "timeShift": null,
-          "links": [],
-          "options": {
-            "displayMode": "lcd",
-            "orientation": "horizontal",
-            "fieldOptions": {
-              "values": false,
-              "calcs": [
-                "last"
-              ],
-              "defaults": {
-                "min": 0,
-                "title": "",
-                "unit": "short"
-              },
-              "override": {},
-              "mappings": [],
-              "thresholds": [
-                {
-                  "index": 0,
-                  "value": null,
-                  "color": "green"
-                },
-                {
-                  "index": 1,
-                  "value": 70,
-                  "color": "orange"
-                },
-                {
-                  "color": "red",
-                  "index": 2,
-                  "value": 90
-                }
-              ]
-            }
-          },
-          "description": "This panel displays the number of messages that are currently present in the queue with the shown topic name."
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
         }
-      ],
+      }
+    ],
       "refresh": "10s",
       "schemaVersion": 19,
       "style": "dark",
