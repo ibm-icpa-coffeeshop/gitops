@@ -12,12 +12,12 @@ metadata:
     commit.stack.appsody.dev/author: Mike Andrasak <andrasak@us.ibm.com>
     commit.stack.appsody.dev/committer: GitHub <noreply@github.com>
     commit.stack.appsody.dev/contextDir: /incubator/java-openliberty
-    commit.stack.appsody.dev/date: Mon May 11 09:22:47 2020 +0100
-    commit.stack.appsody.dev/message: 'java-openliberty: fix stack validate (#805)'
+    commit.stack.appsody.dev/date: Fri May 1 12:33:54 2020 +0100
+    commit.stack.appsody.dev/message: 'Fixes #790 (#798)'
     description: Eclipse MicroProfile & Jakarta EE on Open Liberty & OpenJ9 using
       Maven
     distribution-scope: public
-    image.opencontainers.org/created: "2020-05-13T13:59:46Z"
+    image.opencontainers.org/created: "2020-05-04T16:53:41Z"
     image.opencontainers.org/documentation: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui
     image.opencontainers.org/revision: b88569e22d42f7935bf75c9cd53f3bbb63f4fa6e-modified
     image.opencontainers.org/source: https://github.ibm.com/appsody-coffeeshop/coffeeshop-ui/tree/master
@@ -37,16 +37,16 @@ metadata:
     redhat.com/license_terms: https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI
     release: "408"
     stack.appsody.dev/authors: Mike Andrasak <uberskigeek>, Andy Mauer <ajm01>, Scott
-      Kurz <scottkurz>, Adam Wisniewski <awisniew90>
+      Kurz <>, Adam Wisniewski <>
     stack.appsody.dev/configured: docker.io/appsody/java-openliberty:0.2
-    stack.appsody.dev/created: "2020-05-11T08:29:17Z"
+    stack.appsody.dev/created: "2020-05-01T11:39:42Z"
     stack.appsody.dev/description: Eclipse MicroProfile & Jakarta EE on Open Liberty
       & OpenJ9 using Maven
     stack.appsody.dev/documentation: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/README.md
     stack.appsody.dev/licenses: Apache-2.0
-    stack.appsody.dev/revision: c4a57218bba973cfda35dad29ea452ce44e9d20f
+    stack.appsody.dev/revision: e31befe61fb0dc22b07f7578aed141fec8daed9a
     stack.appsody.dev/source: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty/image
-    stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.2.12
+    stack.appsody.dev/tag: docker.io/appsody/java-openliberty:0.2.11
     stack.appsody.dev/title: Open Liberty
     stack.appsody.dev/url: https://github.com/appsody/stacks/tree/master/incubator/java-openliberty
     summary: Open Liberty
@@ -54,16 +54,16 @@ metadata:
     vcs-ref: 26f36bfa3e3a04c8c866b250924c1aefc34f01c9
     vcs-type: git
     vendor: Open Liberty
-    version: 0.2.12
+    version: 0.2.11
   creationTimestamp: null
   labels:
     app.kubernetes.io/part-of: coffeeshop
     image.opencontainers.org/title: coffeeshop-ui
     stack.appsody.dev/id: java-openliberty
-    stack.appsody.dev/version: 0.2.12
+    stack.appsody.dev/version: 0.2.11
   name: coffeeshop-ui
 spec:
-  applicationImage: index.docker.io/tnixa/coffeeshop-ui:9361acb1ec1bd36b268cfe605bb2b5fc416829c3
+  applicationImage: index.docker.io/ianpartridge/coffeeshop-ui:38d51131f0d7d90db67206faa1854f469117dab7
   bindings:
     resourceRef: coffeeshop-ui-kafka
   createKnativeService: false
