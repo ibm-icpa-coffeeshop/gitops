@@ -69,7 +69,7 @@ spec:
         "bars": false,
         "dashLength": 10,
         "dashes": false,
-        "datasource": "Prometheus",
+        "datasource": "Prometheus-User-Workload",
         "description": "This panel displays the number of messages that are currently present in the queue with the shown topic name.",
         "fill": 1,
         "fillGradient": 0,

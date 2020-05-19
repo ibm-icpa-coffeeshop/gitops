@@ -1,3 +1,4 @@
 resources:
 - dashboard.yaml
 - service-monitor.yaml
+- strimzi-dashboard.yaml
