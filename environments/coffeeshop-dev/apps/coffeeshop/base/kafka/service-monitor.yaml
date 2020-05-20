@@ -16,3 +16,12 @@ spec:
       interval: 1s
       path: /metrics
       scheme: http
+      relabelings:
+      - separator: ;
+        regex: __meta_kubernetes_service_label_(.+)
+        replacement: $1
+        action: labelmap
+      - separator: ;
+        regex: __meta_kubernetes_pod_label_(.+)
+        replacement: $1
+        action: labelmap
