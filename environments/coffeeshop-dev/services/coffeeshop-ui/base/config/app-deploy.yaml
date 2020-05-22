@@ -76,7 +76,7 @@ spec:
     httpGet:
       path: /health/live
       port: 9080
-    initialDelaySeconds: 5
+    initialDelaySeconds: 30
     periodSeconds: 2
   monitoring:
     endpoints:
