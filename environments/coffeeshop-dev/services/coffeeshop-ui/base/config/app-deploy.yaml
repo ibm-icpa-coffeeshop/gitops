@@ -66,7 +66,7 @@ metadata:
     monitor.appsody.dev/enabled: 'true'
   name: coffeeshop-ui
 spec:
-  applicationImage: index.docker.io/ianpartridge/coffeeshop-ui:38d51131f0d7d90db67206faa1854f469117dab7
+  applicationImage: index.docker.io/ianpartridge/coffeeshop-ui:latest
   bindings:
     resourceRef: coffeeshop-ui-kafka
   createKnativeService: false

@@ -2,3 +2,4 @@ resources:
   - app-deploy.yaml
   - service-binding-request.yaml
   - auth-secret.yaml
+  - dashboard.yaml
