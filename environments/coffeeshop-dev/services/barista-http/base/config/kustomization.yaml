@@ -1,2 +1,4 @@
 resources:
   - app-deploy.yaml
+  - dashboard.yaml
+  - auth-secret.yaml
