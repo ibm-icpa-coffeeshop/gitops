@@ -12,7 +12,7 @@ spec:
     matchNames:
       - coffeeshop
   endpoints:
-    - port: prometheus
+    - port: tcp-prometheus
       interval: 1s
       path: /metrics
       scheme: http
