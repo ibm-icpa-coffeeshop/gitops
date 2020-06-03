@@ -8,9 +8,6 @@ spec:
   selector:
     matchLabels:
       strimzi.io/kind: Kafka
-  namespaceSelector:
-    matchNames:
-      - coffeeshop
   endpoints:
     - port: tcp-prometheus
       interval: 1s
