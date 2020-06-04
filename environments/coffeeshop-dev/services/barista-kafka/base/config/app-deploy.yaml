@@ -47,3 +47,6 @@ spec:
     type: ClusterIP
   stack: quarkus
   version: 1.0.0
+  envFrom:
+    - secretRef:
+        name: barista-kafka
