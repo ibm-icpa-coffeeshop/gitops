@@ -110,3 +110,6 @@ spec:
     type: NodePort
   stack: java-openliberty
   version: 1.0.0
+  envFrom:
+    - secretRef:
+        name: coffeeshop-ui-kafka
