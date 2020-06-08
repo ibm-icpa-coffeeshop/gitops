@@ -67,6 +67,7 @@ metadata:
   name: coffeeshop-ui
 spec:
   applicationImage: index.docker.io/ianpartridge/coffeeshop-ui:latest
+  pullPolicy: Always
   bindings:
     resourceRef: coffeeshop-ui-kafka
   createKnativeService: false
