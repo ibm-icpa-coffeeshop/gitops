@@ -122,7 +122,7 @@ spec:
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Consumer Lag",
+        "title": "Unconsumed Messages",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -384,7 +384,7 @@ spec:
         "steppedLine": false,
         "targets": [
           {
-            "expr": "sum(rate(container_cpu_user_seconds_total{namespace=\"$kubernetes_namespace\",pod=~\"$kubernetes_pod\",container=\"app\"}[5m])) by (pod)",
+            "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"$kubernetes_namespace\",pod=~\"$kubernetes_pod\",container=\"app\"}[5m])) by (pod)",
             "format": "time_series",
             "hide": false,
             "intervalFactor": 1,
@@ -396,7 +396,7 @@ spec:
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "CPU Usage",
+        "title": "CPU Usage Seconds",
         "tooltip": {
           "shared": true,
           "sort": 0,
@@ -489,7 +489,7 @@ spec:
         "timeFrom": null,
         "timeRegions": [],
         "timeShift": null,
-        "title": "Bytes Used In Container File",
+        "title": "Container File Usage",
         "tooltip": {
           "shared": true,
           "sort": 0,
