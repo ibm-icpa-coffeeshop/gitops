@@ -1,26 +1,34 @@
 ## Coffee Shop GitOps Repository
 
+This is a GitOps repository representing a development environment for the Coffee Shop demo.  It represents a single source of truth for the envioronment, and can be used to deploy all of microservices that make up the demo.  For more information on the Coffee Shop scenario, see [Design and deliver an event-driven, cloud-native application at lightning speed](https://developer.ibm.com/tutorials/accelerator-for-event-driven-solutions/) and for more information on GitOps, see [Introduction to accelerators for cloud-native solutions](https://developer.ibm.com/articles/introduction-to-accelerators-for-cloud-native-solutions/). 
+
 ### Pre-requisites
 
 This GitOps project assumes that the following already exists in your deployment **OpenShift** cluster:
 
-* The base infrastructure found on the [infrastructure repo](https://github.ibm.com/appsody-coffeeshop/gitops-infrastructure).
-* `kubectl create namespace coffeeshop`
-* `kubectl apply -f environments/coffeeshop-dev/apps/coffeeshop/base/kafka/kafka.yaml`
+* The base infrastructure found on the [infrastructure repo](https://github.com/ibm-icpa-coffeeshop/gitops-infrastructure).
+* `oc create namespace coffeeshop`
+* `oc apply -f environments/coffeeshop-dev/apps/coffeeshop/base/kafka/kafka.yaml`
 
-### GitOps with Kustomize
+### Manual deployment 
+To deploy the application after completing the prerequisitites above, issue the following command:
 
-* `kubectl apply -k environments`
+```
+oc apply -k environments
+```
 
-### GitOps with Monitoring
+### CI/CD with Tekton Pipelines
 
-See the [infrastructure repo](https://github.ibm.com/appsody-coffeeshop/gitops-infrastructure)
+You can set up Tekton pipelines to build each microservice when changes are made, and to deploy the whole application. For more information, See the [pipeline repo](https://github.com/ibm-icpa-coffeeshop/pipeline)
 
-### GitOps with Tekton
+### Monitoring
 
-See the [pipeline repo](https://github.ibm.com/appsody-coffeeshop/pipeline)
+For instructions on how to monitor the application, see the [infrastructure repo](https://github.com/ibm-icpa-coffeeshop/gitops-infrastructure).
+
 
 ### GitOps with ArgoCD
+
+As an alternative to using the Tekton pipelines, you can use ArgoCD to deploy the application.
 
 **Installing ArgoCD**
 
@@ -32,12 +40,12 @@ Helm 2:
 * `helm install argo/argo-cd -n argocd --namespace argocd`
 
 Helm 3:
-* `kubectl create ns argocd`
+* `oc create ns argocd`
 * `helm install argocd argo/argo-cd --namespace argocd`
 
 Then to access the ArgoCD web frontend UI run:
 
-* `kubectl port-forward svc/argocd-server -n argocd 8081:443 `
+* `oc port-forward svc/argocd-server -n argocd 8081:443 `
 
 This will make the ArgoCD UI available at [http://localhost:8081](http://localhost:8081)
 
@@ -46,7 +54,7 @@ You can then login to ArgoCD using the following credentials:
 * Username:	`admin`
 * Password:  name of the server pod (eg. `argocd-server-5f7ddc99f9-vlq7w`)
 
-You can get the server pod name from `kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`
+You can get the server pod name from `oc get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2`
 
 **Creating a Repository entry for the GitOps project**
 
