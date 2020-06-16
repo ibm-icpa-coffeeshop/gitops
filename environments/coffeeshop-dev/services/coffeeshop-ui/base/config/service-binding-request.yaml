@@ -20,7 +20,7 @@ spec:
     - name: MP_MESSAGING_CONNECTOR_LIBERTY_KAFKA_BOOTSTRAP_SERVERS
       value: |-
         {{- range .status.listeners -}}
-          {{- if and (eq .type "plain") -}}
+          {{- if eq .type "plain" -}}
             {{ .bootstrapServers }}
           {{- end -}}
         {{- end -}}
