@@ -19,7 +19,7 @@ oc apply -k environments
 
 ### CI/CD with Tekton Pipelines
 
-You can set up Tekton pipelines to build each microservice when changes are made, and to deploy the whole application. For more information, See the [pipeline repo](https://github.com/ibm-icpa-coffeeshop/pipeline)
+You can set up Tekton pipelines to build each microservice when changes are made, and to deploy the whole application. For more information, See the [pipelines repo](https://github.com/ibm-icpa-coffeeshop/pipelines)
 
 Alternatively, you [use ArgoCD to deploy the application](argocd.md)
 
