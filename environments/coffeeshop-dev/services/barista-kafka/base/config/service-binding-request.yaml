@@ -3,12 +3,6 @@ kind: ServiceBindingRequest
 metadata:
   name: barista-kafka
 spec:
-  # applicationSelector isn't needed anymore once https://github.com/redhat-developer/service-binding-operator/issues/296 is implemented
-  applicationSelector:
-    group: apps
-    resource: deployments
-    resourceRef: barista-kafka
-    version: v1
   # Service Binding Operator doesn't support binding across namespaces until https://github.com/redhat-developer/service-binding-operator/issues/314 is implemented.
   # Assumption: Kafka and the application are deployed to the same namespace
   backingServiceSelector:
