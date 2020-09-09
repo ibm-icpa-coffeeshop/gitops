@@ -5,15 +5,16 @@ metadata:
 spec:
   # Service Binding Operator doesn't support binding across namespaces until https://github.com/redhat-developer/service-binding-operator/issues/314 is implemented.
   # Assumption: Kafka and the application are deployed to the same namespace
-  backingServiceSelector:
-    group: kafka.strimzi.io
+  backingServiceSelectors:
+  - group: kafka.strimzi.io
     kind: Kafka
     resourceRef: my-cluster
     version: v1beta1
+    id: mycluster
   customEnvVar:
     - name: KAFKA_BOOTSTRAP_SERVERS
       value: |-
-        {{- range .status.listeners -}}
+        {{- range .mycluster.status.listeners -}}
           {{- if eq .type "plain" -}}
             {{ .bootstrapServers }}
           {{- end -}}
